@@ -309,9 +309,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1315771245}
   - component: {fileID: 1315771244}
-  - component: {fileID: 1315771246}
-  - component: {fileID: 1315771248}
   - component: {fileID: 1315771249}
+  - component: {fileID: 1315771248}
+  - component: {fileID: 1315771247}
+  - component: {fileID: 1315771246}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -345,7 +346,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!4 &1315771245
 Transform:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 6f54e8a171ad5204682be37e5833b969, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -389,9 +390,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1315771246}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: DebugLogAction
+      - m_Target: {fileID: 1315771247}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -401,21 +402,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5908e87e-1934-4824-9348-8955a41f7033
-    m_ActionName: Player/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionId: b5527f09-0e60-4596-b553-89a1be511c1a
+    m_ActionName: KayBoardandMouse/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: fdc6ec44-fb82-43fe-86af-55890e5991f1
-    m_ActionName: Player/Look[/Mouse/position]
+    m_ActionId: 8a206c71-0099-493c-9998-c2f199707040
+    m_ActionName: KayBoardandMouse/Look[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 042200f9-d18b-42b0-a337-9f1b2b2693c0
-    m_ActionName: Player/Action[/Mouse/leftButton]
+    m_ActionId: e89b8178-bd9b-4cd7-9dbd-9a6bbcc253f8
+    m_ActionName: KayBoardandMouse/Action[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PlayerControl
+  m_DefaultControlScheme: 
   m_DefaultActionMap: KayBoardandMouse
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1315771247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315771242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3ab7852b1b8a346a21ba6ad098bee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  animator: {fileID: 0}
 --- !u!114 &1315771248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,21 +440,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1315771242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7c1fd2c043e00e458feb9a3e6764426, type: 3}
+  m_Script: {fileID: 11500000, guid: a072c9ce78505df44b7875c287f334cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1315771249
-MonoBehaviour:
+  controller: {fileID: 0}
+--- !u!61 &1315771249
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315771242}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70ad3d9e9bf97a9449cad3fe8d5c8f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.015345097, y: -0.0767256}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2634338, y: 0.40153998}
+  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
