@@ -16,9 +16,9 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void GetItem(Inventory inventory, ItemSO item)
+    // 아이템을 획득하는 메서드
+    public void GetItem(Inventory inventory, ItemSO item, ItemGetting gettingMethod)
     {
         inventory.AddItem(item);
-        Debug.Log($"{item.itemName}");
     }
 }
