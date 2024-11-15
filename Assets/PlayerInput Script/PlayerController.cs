@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject inventoryUI;
+
     [Header("Movement")]
     public float moveSpeed;
     private Vector2 curMovementInput;
@@ -41,6 +43,15 @@ public class PlayerController : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
+        }
+    }
+
+    public void OnInventoryToggle(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            bool isActive = inventoryUI.activeSelf;
+            inventoryUI.SetActive(!isActive);
         }
     }
 

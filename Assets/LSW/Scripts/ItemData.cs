@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemData : MonoBehaviour
+[System.Serializable]
+public class ItemData
 {
-    public List<ItemSO> allItems;  
+    public ItemSO itemSO;
+    public int quantity;
 }
