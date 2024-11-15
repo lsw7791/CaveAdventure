@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class ObjectPool<T> where T : MonoBehaviour
     private Transform parent;  // 부모 객체 (선택 사항)
 
     // 초기화 시 풀 크기만큼 객체를 미리 생성하여 큐에 넣어둠
-    public ObjectPool(T prefab, int initialSize, Transform parent = null)
+    public void Initialize(T prefab, int initialSize, Transform parent = null)
     {
         this.prefab = prefab;
         this.parent = parent;
@@ -24,18 +23,20 @@ public class ObjectPool<T> where T : MonoBehaviour
     }
 
     // 객체를 풀에서 꺼내는 메서드
-    public T GetObject()
+    public T GetObject(Vector3 position, Quaternion rotation)
     {
         if (pool.Count > 0)
         {
             T obj = pool.Dequeue();  // 풀에서 객체 꺼내기
             obj.gameObject.SetActive(true);  // 객체 활성화
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
             return obj;
         }
         else
         {
             // 풀에 객체가 없으면 새로 생성해서 반환
-            T obj = Object.Instantiate(prefab, parent);
+            T obj = Object.Instantiate(prefab, position, rotation, parent);
             return obj;
         }
     }

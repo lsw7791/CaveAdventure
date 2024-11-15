@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblin : Creature
+public class Goblin : Monster
 {
     void Move()
     {

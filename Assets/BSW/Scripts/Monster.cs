@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public string creatureName;
     public int health;
