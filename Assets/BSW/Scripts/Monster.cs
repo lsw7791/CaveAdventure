@@ -24,7 +24,6 @@ public class Monster : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log(creatureName + " took damage! Remaining health: " + health);
     }
 
     public bool IsAlive()
