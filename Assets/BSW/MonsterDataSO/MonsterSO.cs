@@ -11,5 +11,4 @@ public class MonsterSO : ScriptableObject
     public int attack;
     public float movementSpeed;
     public float attackSpeed;
-    public GameObject prefab;     // 몬스터 프리팹
 }

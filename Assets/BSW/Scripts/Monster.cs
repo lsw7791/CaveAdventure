@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public string creatureName;
+    public MonsterSO monsterData;
     public int health;
     public int attackPower;
     public float movementSpeed;
@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     // 기본적인 행동들
     public virtual void Attack()
     {
-        Debug.Log(creatureName + " attacks with power: " + attackPower);
+
     }
 
     public virtual void Move(Vector3 direction)
