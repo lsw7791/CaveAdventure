@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,18 +10,26 @@ public class PlayerController : MonoBehaviour
     private Vector2 curMovementInput;
     public Animator animator;
     private Rigidbody2D _rigidbody;
-    private SpriteRenderer spriteRenderer; 
+    private SpriteRenderer spriteRenderer;
+
+    [Header("Jump")]
+    public float jumpForce = 5f; 
+    private bool isGrounded; 
+    public Transform groundCheck; 
+    public float groundCheckRadius = 0.1f;
+    public LayerMask groundLayer; 
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         Move();
-        UpdateAnimation(); 
+        UpdateAnimation();
+        CheckGroundStatus();
     }
 
     void Move()
@@ -31,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
         dir *= moveSpeed;
 
-        _rigidbody.velocity = dir;
+        _rigidbody.velocity = new Vector2(dir.x, _rigidbody.velocity.y); 
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -43,6 +49,15 @@ public class PlayerController : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && isGrounded)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
+            animator.SetTrigger("isJumping"); 
         }
     }
 
@@ -58,7 +73,7 @@ public class PlayerController : MonoBehaviour
     void UpdateAnimation()
     {
         bool isMoving = curMovementInput != Vector2.zero;
-        animator.SetBool("isWalking", isMoving); 
+        animator.SetBool("isWalking", isMoving);
 
         if (curMovementInput.x < 0)
         {
@@ -68,5 +83,10 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    void CheckGroundStatus()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 }
