@@ -52,6 +52,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Jump()
+    {
+        Vector2 dir = transform.up * curMovementInput.y;
+        dir *= jumpForce;
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && isGrounded)
