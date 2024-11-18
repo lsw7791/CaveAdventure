@@ -317,13 +317,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon
       objectReference: {fileID: 0}
+    - target: {fileID: 5017242149733297436, guid: 0c484167cb302fb42949957acf76e960, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017242149733297436, guid: 0c484167cb302fb42949957acf76e960, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017242149733297436, guid: 0c484167cb302fb42949957acf76e960, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7154089192738281893, guid: 0c484167cb302fb42949957acf76e960, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.187
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 7154089192738281893, guid: 0c484167cb302fb42949957acf76e960, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.166
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 7154089192738281893, guid: 0c484167cb302fb42949957acf76e960, type: 3}
       propertyPath: m_LocalPosition.z
@@ -592,10 +604,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1098608848673643007, guid: 13fec9bd808d8924cb11f7eddfb4043a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fd04703aa38777b4b949a15ee7d4dfdb, type: 2}
     - target: {fileID: 2461099248387911509, guid: 13fec9bd808d8924cb11f7eddfb4043a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.162
