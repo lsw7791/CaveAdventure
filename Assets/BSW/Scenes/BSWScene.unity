@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1167915378499243405, guid: 17097808a7a7b9f459f3ffda41898297, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 2091418683}
     - target: {fileID: 1989445440075771700, guid: 17097808a7a7b9f459f3ffda41898297, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -710,6 +714,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11fb71e7119c1e84489a3798fa7155c0, type: 3}
+--- !u!4 &2091418683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2633906667191879837, guid: 64a41f8d9a3f3a940a5b07ba6fb1c2c7, type: 3}
+  m_PrefabInstance: {fileID: 8650582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4570282459059739552
 PrefabInstance:
   m_ObjectHideFlags: 0
