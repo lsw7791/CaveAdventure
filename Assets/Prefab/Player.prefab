@@ -54,7 +54,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -139,6 +139,12 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   moveSpeed: 5
   animator: {fileID: 1763485438669062488}
+  jumpForce: 5
+  groundCheck: {fileID: 0}
+  groundCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &29532963736319675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,13 +195,41 @@ MonoBehaviour:
     m_ActionId: e89b8178-bd9b-4cd7-9dbd-9a6bbcc253f8
     m_ActionName: KayBoardandMouse/Action[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1167915378499243405}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventoryToggle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4ab640e6-dd76-4512-95e2-70b46c03b225
     m_ActionName: KayBoardandMouse/Inventory[/Keyboard/i]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 16845ee9-33bc-414a-95e3-d0ce89353034
     m_ActionName: KayBoardandMouse/Option[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1167915378499243405}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a7f48c2f-30cf-4093-b480-76790673d15b
+    m_ActionName: KayBoardandMouse/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: KayBoardandMouse
