@@ -9,7 +9,7 @@ public class ItemSlot : MonoBehaviour
     public ItemSO currentItem;  // 현재 슬롯의 아이템
     public UIEquip uiEquip;
     public UIInventory uiInventory;
-    private ItemUse itemuse;  // private으로 변경
+    private ItemUse itemuse;
 
     void Awake()
     {

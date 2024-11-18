@@ -60,11 +60,31 @@ public class UIInventory : MonoBehaviour
                     slotComponent.SetItem(item);  // Item과 아이콘 설정
                 }
             }
-            else
-            {
-                itemSlotContainer.GetChild(i).gameObject.SetActive(false);  // 슬롯을 비활성화 (아이템이 없을 때)
-            }
         }
     }
 
+    public void ClearSlot(int slotIndex)
+    {
+        if (slotIndex >= 0 && slotIndex < maxSlots)
+        {
+            // 인벤토리의 해당 슬롯의 아이템 제거
+            if (slotIndex < inventory.items.Count)
+            {
+                inventory.items.RemoveAt(slotIndex);  // 아이템 제거
+            }
+
+            // UI 업데이트
+            GameObject slot = itemSlotContainer.GetChild(slotIndex).gameObject;
+            ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
+
+            if (slotComponent != null)
+            {
+                slotComponent.SetItem(null);  // 슬롯 비우기
+                slot.SetActive(false);  // 슬롯을 비활성화하거나 UI를 업데이트
+            }
+
+            UpdateUI();  // 전체 UI 갱신
+        }
+
+    }
 }

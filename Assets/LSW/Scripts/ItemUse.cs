@@ -1,10 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ItemUse : MonoBehaviour
 {
     public ItemSlot slot;
+    private UIInventory uIInventory;
+    private UIEquip uIEquip;  // UIEquip 인스턴스 추가
+
+    private void Awake()
+    {
+        uIInventory = FindObjectOfType<UIInventory>();
+        uIEquip = FindObjectOfType<UIEquip>();  // UIEquip 초기화
+    }
 
     public void SetSlot(ItemSlot selectedSlot)
     {
@@ -19,8 +26,11 @@ public class ItemUse : MonoBehaviour
             ItemSO item = slot.currentItem; // ItemSO를 가져옴
             Debug.Log("Using item: " + item.name);
 
-            // 아이템 사용에 따른 로직 추가
-            // 예: item.Use(); // 아이템 사용 메서드가 있다면 호출
+            // UIEquip에 아이템을 전달하여 장착 UI에 표시
+            uIEquip.EquipItem(item, slot.index);  // 슬롯 인덱스를 전달
+
+            // 슬롯 비우기
+            uIInventory.ClearSlot(slot.index);
         }
         else
         {
