@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
     private MonsterManager monsterManager;
     private void Awake()
