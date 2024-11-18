@@ -13,16 +13,18 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("Jump")]
-    public float jumpForce = 5f; 
-    private bool isGrounded; 
-    public Transform groundCheck; 
-    public float groundCheckRadius = 0.1f;
-    public LayerMask groundLayer; 
+    public float jumpForce;
+    private bool isGrounded;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void Update()
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
         dir *= moveSpeed;
 
-        _rigidbody.velocity = new Vector2(dir.x, _rigidbody.velocity.y); 
+        _rigidbody.velocity = new Vector2(dir.x, _rigidbody.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -52,18 +54,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump()
-    {
-        Vector2 dir = transform.up * curMovementInput.y;
-        dir *= jumpForce;
-    }
-
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && isGrounded)
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
-            animator.SetTrigger("isJumping"); 
+            animator.SetTrigger("isJumping");
         }
     }
 
@@ -94,5 +90,17 @@ public class PlayerController : MonoBehaviour
     void CheckGroundStatus()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    // 벽과 충돌하면서 벽에 붙지 않도록 처리
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Groundlayer"))  
+        {
+            if (curMovementInput.x != 0)
+            {
+                _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);  // X축 속도를 0으로 설정
+            }
+        }
     }
 }
