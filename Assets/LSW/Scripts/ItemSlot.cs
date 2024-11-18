@@ -6,13 +6,15 @@ public class ItemSlot : MonoBehaviour
 {
     public int index;  // 슬롯의 고유 인덱스 번호
     private Image slotImage;  // 슬롯의 Icon 이미지
-    private ItemSO currentItem;  // 현재 슬롯의 아이템
+    public ItemSO currentItem;  // 현재 슬롯의 아이템
     public UIEquip uiEquip;
     public UIInventory uiInventory;
+    private ItemUse itemuse;  // private으로 변경
 
     void Awake()
     {
         uiInventory = FindObjectOfType<UIInventory>();
+        itemuse = FindObjectOfType<ItemUse>(); // ItemUse 인스턴스 자동 찾기
 
         // Icon이라는 이름의 자식 Image 컴포넌트를 찾아서 할당
         slotImage = transform.Find("Icon").GetComponent<Image>();
@@ -46,6 +48,7 @@ public class ItemSlot : MonoBehaviour
             // 아이템의 이름과 설명을 UI에 표시
             uiInventory.itemNameText.text = currentItem.itemName;
             uiInventory.itemDescriptionText.text = currentItem.description;
+            itemuse.slot = this;
         }
     }
 }
