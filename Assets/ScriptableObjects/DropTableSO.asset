@@ -16,6 +16,8 @@ MonoBehaviour:
   - itemPrefabs:
     - {fileID: 553656641520041854, guid: 8822a71a4280447b29b8f7694d83b289, type: 3}
     - {fileID: 4119169232461797983, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
+    - {fileID: 5047845038175564796, guid: 57efbbcd5af0a4af8bafbbb92b5edba6, type: 3}
+    - {fileID: 8810615909459362574, guid: 442e9c5a640e74d53978a74a9047f81c, type: 3}
     dropRate: 1
     minAmount: 1
-    maxAmount: 1
+    maxAmount: 2

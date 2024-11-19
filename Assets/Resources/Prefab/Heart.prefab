@@ -200,5 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5688026d99fd14ab28d8527ffbd92ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHeart: {fileID: 0}
   heartCount: 0
   heartText: {fileID: 0}

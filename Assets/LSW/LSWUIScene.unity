@@ -183,7 +183,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8919239067673048039, guid: 17097808a7a7b9f459f3ffda41898297, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -201,10 +202,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1241890369807844678, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
-      propertyPath: coinText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4119169232461797983, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -677,6 +674,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 713525964001711805, guid: f9605d3adf1c94e11975da8e3d99f43e, type: 3}
   m_PrefabInstance: {fileID: 1253717690}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1481294243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481294245}
+  - component: {fileID: 1481294244}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1481294244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481294243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e583c81a533f774bbd5d6a6ea20f71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireBallPrefab: {fileID: 4861956719457007317, guid: 389e4326a99c46b43b2c3ca72501af58, type: 3}
+--- !u!4 &1481294245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481294243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: -3, z: -8.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1566739008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,10 +930,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 35810082280032790, guid: 8822a71a4280447b29b8f7694d83b289, type: 3}
-      propertyPath: heartText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 553656641520041854, guid: 8822a71a4280447b29b8f7694d83b289, type: 3}
       propertyPath: m_Name
       value: Heart
@@ -952,3 +990,4 @@ SceneRoots:
   - {fileID: 807193839}
   - {fileID: 627112478}
   - {fileID: 931023653}
+  - {fileID: 1481294245}

@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public SkillSO fireBallData; // 파이어볼 데이터 (스킬 속성)
-    private Rigidbody2D rb;      // 파이어볼 Rigidbody2D
+    public SkillSO fireBallData;  // 파이어볼 데이터 (스킬 속성)
+    private Rigidbody2D rb;       // 파이어볼 Rigidbody2D
     public Vector2 fireBallDir = Vector2.right; // 파이어볼 방향 (기본값: 오른쪽)
-    private ObjectPool<FireBall> pool;          // 오브젝트 풀 참조
+    private ObjectPool<FireBall> pool;           // 오브젝트 풀 참조
+
+    // 데미지를 외부에서 조정할 수 있게 함
+    public float damageMultiplier = 1f;         // 데미지 배율 (기본 1배)
 
     // 오브젝트 풀 설정 메서드
     public void SetPool(ObjectPool<FireBall> objectPool)
@@ -13,7 +16,13 @@ public class FireBall : MonoBehaviour
         pool = objectPool;
     }
 
-   
+    // 데미지 배율을 설정하는 메서드
+    public void SetDamageMultiplier(float multiplier)
+    {
+        damageMultiplier = multiplier;
+    }
+
+    // 발사 메서드
     public void Shoot(Vector2 dir)
     {
         fireBallDir = dir;
@@ -42,7 +51,9 @@ public class FireBall : MonoBehaviour
             Monster monster = collision.gameObject.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.TakeDamage(fireBallData.skillDamage); // 데미지 적용
+                // BuffAttack에 의해 증가된 데미지 적용
+                float finalDamage = fireBallData.skillDamage * damageMultiplier;
+                monster.TakeDamage((int)finalDamage); // 데미지 적용
                 ReturnToPool();
             }
         }
