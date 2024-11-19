@@ -54,7 +54,6 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         {
             // 풀에서 가져온 몬스터 초기화
             monster.Initialize(monsterPool);
-            Debug.Log("Monster spawned at position: " + position);
         }
         else
         {

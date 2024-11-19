@@ -8,6 +8,8 @@ TagManager:
   - InLadder
   - Monster
   - FireBall
+  - Gimmick
+  - Item
   layers:
   - Default
   - TransparentFX

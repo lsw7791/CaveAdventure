@@ -3,48 +3,56 @@ using UnityEngine;
 
 public class ObjectPool<T> where T : MonoBehaviour
 {
-    private Queue<T> pool = new Queue<T>();  // °´Ã¼¸¦ ´ãÀ» Å¥
-    private T prefab;  // Ç®¸µÇÒ °´Ã¼ÀÇ ÇÁ¸®ÆÕ
-    private Transform parent;  // ºÎ¸ð °´Ã¼ (¼±ÅÃ »çÇ×)
+    private Queue<T> pool = new Queue<T>();  // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¥
+    private T prefab;  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Transform parent;  // ï¿½Î¸ï¿½ ï¿½ï¿½Ã¼ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
-    // ÃÊ±âÈ­ ½Ã Ç® Å©±â¸¸Å­ °´Ã¼¸¦ ¹Ì¸® »ý¼ºÇÏ¿© Å¥¿¡ ³Ö¾îµÒ
+    // ï¿½Ê±ï¿½È­ ï¿½ï¿½ Ç® Å©ï¿½â¸¸Å­ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Å¥ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½
     public void Initialize(T prefab, int initialSize, Transform parent = null)
     {
         this.prefab = prefab;
         this.parent = parent;
 
-        // ÃÊ±â °´Ã¼ »ý¼º
+        // ï¿½Ê±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < initialSize; i++)
         {
-            T obj = Object.Instantiate(prefab, parent);  // °´Ã¼ »ý¼º
-            obj.gameObject.SetActive(false);  // ºñÈ°¼ºÈ­ÇÏ¿© Ç®¿¡ ³ÖÀ½
-            pool.Enqueue(obj);  // Å¥¿¡ °´Ã¼ Ãß°¡
+            T obj = Object.Instantiate(prefab, parent);  // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+            obj.gameObject.SetActive(false);  // ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï¿ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            pool.Enqueue(obj);  // Å¥ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ß°ï¿½
         }
     }
 
-    // °´Ã¼¸¦ Ç®¿¡¼­ ²¨³»´Â ¸Þ¼­µå
+    // ï¿½ï¿½Ã¼ï¿½ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public T GetObject(Vector3 position, Quaternion rotation)
     {
         if (pool.Count > 0)
         {
-            T obj = pool.Dequeue();  // Ç®¿¡¼­ °´Ã¼ ²¨³»±â
-            obj.gameObject.SetActive(true);  // °´Ã¼ È°¼ºÈ­
+            T obj = pool.Dequeue();  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            obj.gameObject.SetActive(true);  // ï¿½ï¿½Ã¼ È°ï¿½ï¿½È­
             obj.transform.position = position;
             obj.transform.rotation = rotation;
             return obj;
         }
         else
         {
-            // Ç®¿¡ °´Ã¼°¡ ¾øÀ¸¸é »õ·Î »ý¼ºÇØ¼­ ¹ÝÈ¯
+            // Ç®ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½È¯
             T obj = Object.Instantiate(prefab, position, rotation, parent);
             return obj;
         }
     }
 
-    // °´Ã¼¸¦ Ç®¿¡ ¹ÝÈ¯ÇÏ´Â ¸Þ¼­µå
+    // ï¿½ï¿½Ã¼ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void ReturnObject(T obj)
     {
-        obj.gameObject.SetActive(false);  // °´Ã¼ ºñÈ°¼ºÈ­
-        pool.Enqueue(obj);  // Ç®¿¡ °´Ã¼ Ãß°¡
+        obj.gameObject.SetActive(false);  // ï¿½ï¿½Ã¼ ï¿½ï¿½È°ï¿½ï¿½È­
+        pool.Enqueue(obj);  // Ç®ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ß°ï¿½
+    }
+
+    public IEnumerable<T> GetAllObjects()
+    {
+        foreach (var item in pool)
+        {
+            yield return item;
+        }
     }
 }
