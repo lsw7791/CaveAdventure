@@ -715,6 +715,7 @@ GameObject:
   - component: {fileID: 1085407707}
   - component: {fileID: 1085407709}
   - component: {fileID: 1085407708}
+  - component: {fileID: 1085407710}
   m_Layer: 5
   m_Name: UIHeart
   m_TagString: Untagged
@@ -780,6 +781,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085407706}
   m_CullTransparentMesh: 1
+--- !u!114 &1085407710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085407706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9436c1219617429f93c63f4dd43ab15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeIncrement: 1
 --- !u!1 &1205791420
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +806,7 @@ GameObject:
   - component: {fileID: 1205791423}
   - component: {fileID: 1205791422}
   m_Layer: 5
-  m_Name: CoinCount
+  m_Name: HeartCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,6 +987,7 @@ GameObject:
   - component: {fileID: 1762352190}
   - component: {fileID: 1762352192}
   - component: {fileID: 1762352191}
+  - component: {fileID: 1762352193}
   m_Layer: 5
   m_Name: UICoin
   m_TagString: Untagged
@@ -1038,6 +1053,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762352189}
   m_CullTransparentMesh: 1
+--- !u!114 &1762352193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762352189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c8ee55b009a4206914799ba43ee195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinIncrement: 1
 --- !u!1001 &8903874772828034396
 PrefabInstance:
   m_ObjectHideFlags: 0
