@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemAin : MonoBehaviour
+public class ItemAnim : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float rotationSpeed; 
+
+    private void Update()
     {
-        
+        RotateItem();
     }
 
-    // Update is called once per frame
-    void Update()
+    void RotateItem()
     {
-        
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
 }
