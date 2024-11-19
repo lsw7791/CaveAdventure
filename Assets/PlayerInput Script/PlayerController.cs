@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject inventoryUI;
+    public GameObject Player;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -18,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
+
+    [SerializeField]
+    private GameObject[] FireBallPrefab;
 
     private void Awake()
     {
@@ -101,6 +106,62 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);  // X축 속도를 0으로 설정
             }
+        }
+    }
+    //파이어볼 소환 부분
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Instantiate(FireBallPrefab[0], transform.position, Quaternion.identity);
+        }
+    }
+
+    //여기부턴 사다리 타기 부분
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        _rigidbody.velocity = new Vector2(0, 0);
+        if (other.gameObject.layer == 8)
+        {
+            this.gameObject.tag = "InLadder";
+        }
+    }
+    void Ladder(float k)
+    {
+        if (this.tag == "InLadder")
+        {
+            isGrounded = false;
+            Player.layer = 9;
+            _rigidbody.gravityScale = 0;
+            if (k > 0)
+            {
+                this.transform.Translate(0, moveSpeed * Time.deltaTime, 0);
+            }
+            if (k < 0)
+            {
+                this.transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
+            }
+        }
+    }
+    void LadderOut()
+    {
+        this._rigidbody.gravityScale = 1;
+        this.gameObject.layer = 6;
+        this.tag = "Player";
+    }
+    private void FixedUpdate()
+    {
+        float k = Input.GetAxisRaw("Vertical");
+        if (k != 0)
+        {
+            Ladder(k);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            LadderOut();
         }
     }
 }
