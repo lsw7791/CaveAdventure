@@ -118,14 +118,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isfalling", false);
         }
     }
-    //파이어볼 소환 부분
-    public void Attack(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            Instantiate(FireBallPrefab[0], transform.position, Quaternion.identity);
-        }
-    }
 
     //여기부턴 사다리 타기 부분
     void OnTriggerEnter2D(Collider2D other)

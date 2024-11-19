@@ -30,6 +30,17 @@ public class FireBall : MonoBehaviour
         rb.velocity = fireBallDir.normalized * fireBallData.skillSpeed; // 발사 속도 설정
 
         IgnoreItemCollisions();  // 아이템과의 충돌 무시
+        IgnorePlayerCollision();
+    }
+
+    private void IgnorePlayerCollision()
+    {
+        Player player = FindObjectOfType<Player>(); // 플레이어 객체 찾기
+        Collider2D fireBallCollider = GetComponent<Collider2D>(); // 파이어볼의 콜라이더 가져오기
+
+        Collider2D playerCollider = player.GetComponent<Collider2D>(); // 플레이어의 콜라이더 가져오기
+
+        Physics2D.IgnoreCollision(fireBallCollider, playerCollider, true);
     }
 
     // 아이템과의 충돌을 무시하는 메서드
