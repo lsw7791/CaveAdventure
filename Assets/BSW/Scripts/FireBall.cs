@@ -30,7 +30,7 @@ public class FireBall : MonoBehaviour
         }
 
         // GroundLayer와 충돌 시 (필요한 처리)
-        if (collision.gameObject.CompareTag("GroundLayer"))
+        if (collision.gameObject.CompareTag("Groundlayer"))
         {
             // 바닥과 충돌했을 때 할 작업을 여기에 추가
         }
