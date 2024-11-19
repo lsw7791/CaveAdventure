@@ -1,27 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemCoin : MonoBehaviour, ICollectible
 {
-    public UICoin uiCoin;  
-    public Text coinText;   
-    public int coinCount;
+    private UICoin uiCoin;
 
     private void Awake()
     {
+        // UICoin을 찾아서 참조합니다.
         uiCoin = FindObjectOfType<UICoin>();
-        coinText = uiCoin.GetComponentInChildren<Text>();
-        int.TryParse(coinText.text, out coinCount);
     }
 
     public void Collect()
     {
-        coinCount++;
-        UpdateUI();
-    }
-
-    public void UpdateUI()
-    {
-        coinText.text = coinCount.ToString();
+        // 코인 획득 시 UICoin의 Collect 메서드 호출
+        uiCoin.Collect();
     }
 }

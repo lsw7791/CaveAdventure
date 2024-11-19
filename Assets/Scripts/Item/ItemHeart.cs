@@ -1,28 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemHeart : MonoBehaviour, ICollectible
 {
-    public UIHeart uiHeart;
-    public int heartCount;
-    public Text heartText;
+    private UIHeart uiHeart;  // UIHeart 참조
 
     private void Awake()
     {
+        // UIHeart를 찾아서 참조
         uiHeart = FindObjectOfType<UIHeart>();
-        heartText = uiHeart.GetComponentInChildren<Text>();
-        int.TryParse(heartText.text, out heartCount);
-
     }
 
     public void Collect()
     {
-        heartCount++; 
-        UpdateUI();  
-    }
-
-    public void UpdateUI()
-    {
-        heartText.text = heartCount.ToString();
+        // 하트를 증가시키고 UI 갱신
+        uiHeart.Collect();
     }
 }
