@@ -1,41 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public SkillSO fireBallData; // ÆÄÀÌ¾îº¼ÀÇ µ¥ÀÌÅÍ (µ¥¹ÌÁö µî)
-    private Rigidbody2D rb;      // ÆÄÀÌ¾îº¼ÀÇ Rigidbody2D ÄÄÆ÷³ÍÆ®
-    private Vector2 fireBallDir = Vector2.right; // ÆÄÀÌ¾îº¼ÀÇ ¹æÇâ (±âº»ÀûÀ¸·Î ¿À¸¥ÂÊÀ¸·Î ¼³Á¤)
+    public SkillSO fireBallData; // íŒŒì´ì–´ë³¼ ë°ì´í„° (ìŠ¤í‚¬ ì†ì„±)
+    private Rigidbody2D rb;      // íŒŒì´ì–´ë³¼ Rigidbody2D
+    public Vector2 fireBallDir = Vector2.right; // íŒŒì´ì–´ë³¼ ë°©í–¥ (ê¸°ë³¸ê°’: ì˜¤ë¥¸ìª½)
+    private ObjectPool<FireBall> pool;          // ì˜¤ë¸Œì íŠ¸ í’€ ì°¸ì¡°
 
-    private void Start()
+    // ì˜¤ë¸Œì íŠ¸ í’€ ì„¤ì • ë©”ì„œë“œ
+    public void SetPool(ObjectPool<FireBall> objectPool)
     {
-        // Rigidbody2D ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        pool = objectPool;
+    }
+
+   
+    public void Shoot(Vector2 dir)
+    {
+        fireBallDir = dir;
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero; // ì´ˆê¸° ì†ë„ ë¦¬ì…‹
+        rb.velocity = fireBallDir.normalized * fireBallData.skillSpeed; // ë°œì‚¬ ì†ë„ ì„¤ì •
 
-        rb.AddForce(fireBallDir * fireBallData.skillSpeed, ForceMode2D.Impulse);
-
+        // FireBallê³¼ í”Œë ˆì´ì–´ì˜ ì¶©ëŒì„ ë¬´ì‹œ
+        Player player = FindObjectOfType<Player>(); // í”Œë ˆì´ì–´ ê°ì²´ ì°¾ê¸°
+        if (player != null)
+        {
+            Collider2D playerCollider = player.GetComponent<Collider2D>();
+            Collider2D fireBallCollider = GetComponent<Collider2D>();
+            if (playerCollider != null && fireBallCollider != null)
+            {
+                Physics2D.IgnoreCollision(fireBallCollider, playerCollider, true);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ¸ó½ºÅÍ¿Í Ãæµ¹ ½Ã µ¥¹ÌÁö ÁÖ±â
+        // ëª¬ìŠ¤í„°ì™€ ì¶©ëŒ ì²˜ë¦¬
         if (collision.gameObject.CompareTag("Monster"))
         {
-            Monster monster = collision.gameObject.GetComponent<Monster>(); // ¸ó½ºÅÍ ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+            Monster monster = collision.gameObject.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.TakeDamage(fireBallData.skillDamage); // ¸ó½ºÅÍ¿¡°Ô µ¥¹ÌÁö¸¦ ÁÜ
+                monster.TakeDamage(fireBallData.skillDamage); // ë°ë¯¸ì§€ ì ìš©
             }
         }
 
-        // GroundLayer¿Í Ãæµ¹ ½Ã (ÇÊ¿äÇÑ Ã³¸®)
+        // ì§€í˜•ê³¼ ì¶©ëŒ ì²˜ë¦¬
         if (collision.gameObject.CompareTag("Groundlayer"))
         {
-            // ¹Ù´Ú°ú Ãæµ¹ÇßÀ» ¶§ ÇÒ ÀÛ¾÷À» ¿©±â¿¡ Ãß°¡
+            // ì§€í˜•ê³¼ ì¶©ëŒ ì‹œ ì˜¤ë¸Œì íŠ¸ í’€ë¡œ ë°˜í™˜
+            ReturnToPool();
         }
+    }
 
-        // Ãæµ¹ ½Ã ÆÄÀÌ¾îº¼ ºñÈ°¼ºÈ­
-        gameObject.SetActive(false);
+    // FireBallì„ ObjectPoolë¡œ ë°˜í™˜
+    private void ReturnToPool()
+    {
+        gameObject.SetActive(false); // FireBall ë¹„í™œì„±í™”
+        pool.ReturnObject(this);     // ObjectPoolë¡œ ë°˜í™˜
     }
 }
