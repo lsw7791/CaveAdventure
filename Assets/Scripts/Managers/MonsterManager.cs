@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class MonsterManager : MonoBehaviour
+public class MonsterManager : MonoSingleton<MonsterManager>
 {
     public GameObject GoblinPrefab;  // 몬스터 1 프리팹
     public GameObject zombiePrefab;  // 몬스터 2 프리팹
@@ -10,49 +10,37 @@ public class MonsterManager : MonoBehaviour
     public ObjectPool<Monster> goblinPool;
     public ObjectPool<Monster> zombiePool;
     public ObjectPool<Monster> demonPool;
-
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
-        Debug.Log("MonsterManager Start() called");
         // 풀 초기화
         if (GoblinPrefab != null)
         {
             goblinPool = new ObjectPool<Monster>();
             goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 12); // 몬스터 풀을 12개로 초기화
-            Debug.Log("Goblin Pool Initialized");
         }
-        else
-        {
-            Debug.LogError("GoblinPrefab is not assigned!");
-        }
-
         if (zombiePrefab != null)
         {
             zombiePool = new ObjectPool<Monster>();
             zombiePool.Initialize(zombiePrefab.GetComponent<Monster>(), 12);
             Debug.Log("Zombie Pool Initialized");
         }
-        else
-        {
-            Debug.LogError("ZombiePrefab is not assigned!");
-        }
-
         if (demonPrefab != null)
         {
             demonPool = new ObjectPool<Monster>();
             demonPool.Initialize(demonPrefab.GetComponent<Monster>(), 12);
             Debug.Log("Demon Pool Initialized");
         }
-        else
-        {
-            Debug.LogError("DemonPrefab is not assigned!");
-        }
+
     }
 
     // 몬스터 풀에서 꺼내기
-    public Monster GetMonster(Vector3 position, Quaternion rotation, ObjectPool<Monster> monsterPool)
+    public Monster GetMonster(Vector3 position, ObjectPool<Monster> monsterPool)
     {
-        Monster monster = monsterPool.GetObject(position, rotation);
+        Monster monster = monsterPool.GetObject(position, Quaternion.identity);
         if (monster != null)
         {
             Debug.Log("Monster spawned at position: " + position);
