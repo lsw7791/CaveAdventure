@@ -17,4 +17,3 @@ MonoBehaviour:
   attack: 5
   movementSpeed: 1
   attackSpeed: 1
-  prefab: {fileID: 0}

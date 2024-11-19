@@ -6,19 +6,34 @@ public class Monster : MonoBehaviour
 {
     public MonsterSO monsterData;
     public int health;
-    public int attackPower;
-    public float movementSpeed;
+    Vector2 moveDir;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-
-    // 기본적인 행동들
-    public virtual void Attack()
+    private void Start()
     {
+        // Rigidbody2D 컴포넌트 가져오기
+        rb = GetComponent<Rigidbody2D>();
 
+        // 이동 방향 설정 (랜덤)
+        moveDir = new Vector2(Random.Range(0, 2) == 0 ? -1 : 1, 0);
+
+        // 몬스터 초기 건강 설정
+        health = monsterData.maxHealth;
     }
-
-    public virtual void Move(Vector3 direction)
+    void FixedUpdate()
     {
-        transform.Translate(direction * movementSpeed * Time.deltaTime);
+        Move();
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 충돌 시 이동 방향을 반대로 바꿈
+        moveDir *= new Vector2(-1, 0);
+    }
+    // 이동
+    public virtual void Move()
+    {
+        rb.velocity = moveDir * monsterData.movementSpeed;
     }
 
     public virtual void TakeDamage(int damage)
@@ -26,8 +41,7 @@ public class Monster : MonoBehaviour
         health -= damage;
     }
 
-    public bool IsAlive()
+    public virtual void Attack()
     {
-        return health > 0;
     }
 }
