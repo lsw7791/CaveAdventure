@@ -37,6 +37,15 @@ public class PlayerController : MonoBehaviour
         Move();
         UpdateAnimation();
         CheckGroundStatus();
+
+        if (isGrounded == false)
+        {
+            if (_rigidbody.velocity.y < 0)
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isfalling", true);
+            }
+        }
     }
 
     void Move()
@@ -64,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed && isGrounded)
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
-            animator.SetTrigger("isJumping");
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -106,6 +115,7 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);  // X축 속도를 0으로 설정
             }
+            animator.SetBool("isfalling", false);
         }
     }
     //파이어볼 소환 부분
@@ -122,9 +132,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.layer == 8)
         {
-            bool isladder = curMovementInput == Vector2.zero;
             this.gameObject.tag = "InLadder";
-            animator.SetBool("isLadderIdle", isladder);
+            animator.SetBool("isLadderIdle", true);
         }
     }
     void Ladder(float k)
@@ -132,21 +141,20 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = new Vector2(0, 0);
         if (this.tag == "InLadder")
         {
-            bool ladderMoving = curMovementInput != Vector2.zero;
+
             isGrounded = false;
             Player.layer = 9;
             _rigidbody.gravityScale = 0;
             if (k > 0)
             {
                 this.transform.Translate(0, moveSpeed * Time.deltaTime, 0);
-                animator.SetBool("isLadder", ladderMoving);
+                animator.SetBool("isLadder", true);
             }
             if (k < 0)
             {
                 this.transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
-                animator.SetBool("isLadder", ladderMoving);
+                animator.SetBool("isLadder", true);
             }
-
         }
     }
     void LadderOut()
@@ -154,6 +162,8 @@ public class PlayerController : MonoBehaviour
         this._rigidbody.gravityScale = 1;
         this.gameObject.layer = 6;
         this.tag = "Player";
+        animator.SetBool("isLadderIdle", false);
+        animator.SetBool("isLadder", false);
     }
     void FixedUpdate()
     {
@@ -168,6 +178,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             LadderOut();
+            animator.SetTrigger("isIdle");
         }
     }
 }
