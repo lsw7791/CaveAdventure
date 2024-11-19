@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class CollectableItem : MonoBehaviour
 {
     public float followSpeed;
     public float detectionRadius;
@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
         if (distanceToPlayer <= detectionRadius)
         {
             FollowPlayer();
-        }      
+        }
     }
 
     void FollowPlayer()
@@ -34,8 +34,10 @@ public class Item : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            ICollectible collectible = GetComponent<ICollectible>();
+
+            collectible.Collect();
             Destroy(gameObject);
         }
     }
-
 }
