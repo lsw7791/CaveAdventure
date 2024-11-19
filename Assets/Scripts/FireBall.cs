@@ -43,6 +43,7 @@ public class FireBall : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(fireBallData.skillDamage); // 데미지 적용
+                ReturnToPool();
             }
         }
 
