@@ -39,6 +39,10 @@ public class Monster : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
+        if(health <=0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public virtual void Attack()

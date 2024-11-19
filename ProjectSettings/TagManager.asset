@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Groundlayer
   - InLadder
+  - Monster
   layers:
   - Default
   - TransparentFX
