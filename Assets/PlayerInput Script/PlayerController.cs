@@ -118,29 +118,35 @@ public class PlayerController : MonoBehaviour
     }
 
     //여기부턴 사다리 타기 부분
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        _rigidbody.velocity = new Vector2(0, 0);
         if (other.gameObject.layer == 8)
         {
+            bool isladder = curMovementInput == Vector2.zero;
             this.gameObject.tag = "InLadder";
+            animator.SetBool("isLadderIdle", isladder);
         }
     }
     void Ladder(float k)
     {
+        _rigidbody.velocity = new Vector2(0, 0);
         if (this.tag == "InLadder")
         {
+            bool ladderMoving = curMovementInput != Vector2.zero;
             isGrounded = false;
             Player.layer = 9;
             _rigidbody.gravityScale = 0;
             if (k > 0)
             {
                 this.transform.Translate(0, moveSpeed * Time.deltaTime, 0);
+                animator.SetBool("isLadder", ladderMoving);
             }
             if (k < 0)
             {
                 this.transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
+                animator.SetBool("isLadder", ladderMoving);
             }
+
         }
     }
     void LadderOut()
@@ -149,7 +155,7 @@ public class PlayerController : MonoBehaviour
         this.gameObject.layer = 6;
         this.tag = "Player";
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         float k = Input.GetAxisRaw("Vertical");
         if (k != 0)
@@ -157,9 +163,9 @@ public class PlayerController : MonoBehaviour
             Ladder(k);
         }
     }
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 7)
+        if (other.gameObject.layer == 8)
         {
             LadderOut();
         }
