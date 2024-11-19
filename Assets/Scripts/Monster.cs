@@ -69,6 +69,7 @@ public class Monster : MonoBehaviour
     {
         if (monsterPool != null)
         {
+            health = monsterData.maxHealth;
             gameObject.SetActive(false);  // 비활성화
             monsterPool.ReturnObject(this);  // 풀로 반환
             Debug.Log("Monster returned to pool.");
