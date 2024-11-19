@@ -9,6 +9,13 @@ public class Monster : MonoBehaviour
     Vector2 moveDir;
     private Rigidbody2D rb;
     private Animator animator;
+    private ObjectPool<Monster> monsterPool;  // 몬스터를 반환할 풀 참조
+
+    // MonsterManager에서 해당 풀을 설정할 수 있도록 추가하는 생성자 또는 메서드
+    public void Initialize(ObjectPool<Monster> pool)
+    {
+        monsterPool = pool;
+    }
 
     private void Start()
     {
@@ -21,27 +28,50 @@ public class Monster : MonoBehaviour
         // 몬스터 초기 건강 설정
         health = monsterData.maxHealth;
     }
+
     void FixedUpdate()
     {
         Move();
+        MonsterDrop();
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         // 충돌 시 이동 방향을 반대로 바꿈
         moveDir *= new Vector2(-1, 0);
     }
+
     // 이동
     public virtual void Move()
     {
         rb.velocity = moveDir * monsterData.movementSpeed;
     }
-
+    void MonsterDrop()
+    {
+        if(gameObject.transform.position.y<-10)
+        {
+            ReturnToPool();
+        }
+    }
+    // 데미지 받았을 때
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <=0)
+        if (health <= 0)
         {
-            gameObject.SetActive(false);
+            // 몬스터가 죽으면 풀로 반환
+            ReturnToPool();
+        }
+    }
+
+    // 풀로 반환하는 메서드
+    private void ReturnToPool()
+    {
+        if (monsterPool != null)
+        {
+            gameObject.SetActive(false);  // 비활성화
+            monsterPool.ReturnObject(this);  // 풀로 반환
+            Debug.Log("Monster returned to pool.");
         }
     }
 

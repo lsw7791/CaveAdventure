@@ -10,31 +10,40 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     public ObjectPool<Monster> goblinPool;
     public ObjectPool<Monster> zombiePool;
     public ObjectPool<Monster> demonPool;
-    private void Awake()
+
+    protected override void Awake()
     {
-        
-    }
-    void Start()
-    {
+        base.Awake();  // 필요하면 부모의 Awake 메서드를 호출
+        // 리소스에서 프리팹 불러오기
+        GoblinPrefab = Resources.Load<GameObject>("Prefab/Goblin");
+        zombiePrefab = Resources.Load<GameObject>("Prefab/Zombie");
+        demonPrefab = Resources.Load<GameObject>("Prefab/Demon");
+
         // 풀 초기화
         if (GoblinPrefab != null)
         {
             goblinPool = new ObjectPool<Monster>();
-            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 12); // 몬스터 풀을 12개로 초기화
+            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 6);  // 몬스터 풀을 6개로 초기화
         }
         if (zombiePrefab != null)
         {
             zombiePool = new ObjectPool<Monster>();
-            zombiePool.Initialize(zombiePrefab.GetComponent<Monster>(), 12);
-            Debug.Log("Zombie Pool Initialized");
+            zombiePool.Initialize(zombiePrefab.GetComponent<Monster>(), 6);
         }
         if (demonPrefab != null)
         {
             demonPool = new ObjectPool<Monster>();
-            demonPool.Initialize(demonPrefab.GetComponent<Monster>(), 12);
-            Debug.Log("Demon Pool Initialized");
+            demonPool.Initialize(demonPrefab.GetComponent<Monster>(), 6);
         }
+    }
 
+    void Start()
+    {
+        // 몬스터를 풀에서 가져오기
+        Vector3 spawnPosition = new Vector3(2f, -3f, 0);  // 몬스터를 생성할 위치
+        ObjectPool<Monster> selectedPool = goblinPool;  // 생성할 풀 선택
+
+        Monster newMonster = GetMonster(spawnPosition, selectedPool);
     }
 
     // 몬스터 풀에서 꺼내기
@@ -43,6 +52,8 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         Monster monster = monsterPool.GetObject(position, Quaternion.identity);
         if (monster != null)
         {
+            // 풀에서 가져온 몬스터 초기화
+            monster.Initialize(monsterPool);
             Debug.Log("Monster spawned at position: " + position);
         }
         else
