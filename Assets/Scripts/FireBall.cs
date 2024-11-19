@@ -7,7 +7,6 @@ public class FireBall : MonoBehaviour
     public Vector2 fireBallDir = Vector2.right; // 파이어볼 방향 (기본값: 오른쪽)
     private ObjectPool<FireBall> pool;           // 오브젝트 풀 참조
 
-    // 데미지를 외부에서 조정할 수 있게 함
     public float damageMultiplier = 1f;         // 데미지 배율 (기본 1배)
 
     // 오브젝트 풀 설정 메서드
@@ -30,15 +29,20 @@ public class FireBall : MonoBehaviour
         rb.velocity = Vector2.zero; // 초기 속도 리셋
         rb.velocity = fireBallDir.normalized * fireBallData.skillSpeed; // 발사 속도 설정
 
-        // FireBall과 플레이어의 충돌을 무시
-        Player player = FindObjectOfType<Player>(); // 플레이어 객체 찾기
-        if (player != null)
+        IgnoreItemCollisions();  // 아이템과의 충돌 무시
+    }
+
+    // 아이템과의 충돌을 무시하는 메서드
+    private void IgnoreItemCollisions()
+    {
+        Collider2D fireBallCollider = GetComponent<Collider2D>(); // 파이어볼의 콜라이더 가져오기
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item"); // 아이템 오브젝트들 찾기
+        foreach (GameObject item in items)
         {
-            Collider2D playerCollider = player.GetComponent<Collider2D>();
-            Collider2D fireBallCollider = GetComponent<Collider2D>();
-            if (playerCollider != null && fireBallCollider != null)
+            Collider2D itemCollider = item.GetComponent<Collider2D>();
+            if (itemCollider != null)
             {
-                Physics2D.IgnoreCollision(fireBallCollider, playerCollider, true);
+                Physics2D.IgnoreCollision(fireBallCollider, itemCollider, true); // 충돌 무시
             }
         }
     }
@@ -51,18 +55,16 @@ public class FireBall : MonoBehaviour
             Monster monster = collision.gameObject.GetComponent<Monster>();
             if (monster != null)
             {
-                // BuffAttack에 의해 증가된 데미지 적용
                 float finalDamage = fireBallData.skillDamage * damageMultiplier;
                 monster.TakeDamage((int)finalDamage); // 데미지 적용
-                ReturnToPool();
+                ReturnToPool(); // FireBall을 풀로 반환
             }
         }
 
         // 지형과 충돌 처리
         if (collision.gameObject.CompareTag("Groundlayer"))
         {
-            // 지형과 충돌 시 오브젝트 풀로 반환
-            ReturnToPool();
+            ReturnToPool(); // FireBall을 풀로 반환
         }
     }
 

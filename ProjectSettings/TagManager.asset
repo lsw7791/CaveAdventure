@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - FireBall
   - Gimmick
+  - Item
   layers:
   - Default
   - TransparentFX

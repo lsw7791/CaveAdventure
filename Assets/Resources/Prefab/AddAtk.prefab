@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6649826644898538144}
   m_Layer: 0
   m_Name: AddAtk
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackMultiplier: 2
   duration: 10
+  gameManager: {fileID: 0}
 --- !u!50 &6622757869348267754
 Rigidbody2D:
   serializedVersion: 4
