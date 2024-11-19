@@ -1,11 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class ItemHeart : MonoBehaviour, ICollectible
 {
-    public int heartCount;         
-    public Text heartText;       
+    public UIHeart uiHeart;
+    public int heartCount;
+    public Text heartText;
+
+    private void Awake()
+    {
+        uiHeart = FindObjectOfType<UIHeart>();
+        heartText = uiHeart.GetComponentInChildren<Text>();
+        int.TryParse(heartText.text, out heartCount);
+
+    }
 
     public void Collect()
     {

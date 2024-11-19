@@ -11,4 +11,6 @@ public class MonsterSO : ScriptableObject
     public int attack;
     public float movementSpeed;
     public float attackSpeed;
+    public DropTableSO dropTable;
+
 }

@@ -9,9 +9,9 @@ public class Monster : MonoBehaviour
     Vector2 moveDir;
     private Rigidbody2D rb;
     private Animator animator;
-    private ObjectPool<Monster> monsterPool;  // ¸ó½ºÅÍ¸¦ ¹ÝÈ¯ÇÒ Ç® ÂüÁ¶
+    private ObjectPool<Monster> monsterPool;  // ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ Ç® ï¿½ï¿½ï¿½ï¿½
 
-    // MonsterManager¿¡¼­ ÇØ´ç Ç®À» ¼³Á¤ÇÒ ¼ö ÀÖµµ·Ï Ãß°¡ÇÏ´Â »ý¼ºÀÚ ¶Ç´Â ¸Þ¼­µå
+    // MonsterManagerï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void Initialize(ObjectPool<Monster> pool)
     {
         monsterPool = pool;
@@ -19,13 +19,13 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
-        // Rigidbody2D ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        // Rigidbody2D ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         rb = GetComponent<Rigidbody2D>();
 
-        // ÀÌµ¿ ¹æÇâ ¼³Á¤ (·£´ý)
+        // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
         moveDir = new Vector2(Random.Range(0, 2) == 0 ? -1 : 1, 0);
 
-        // ¸ó½ºÅÍ ÃÊ±â °Ç°­ ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½
         health = monsterData.maxHealth;
     }
 
@@ -37,11 +37,11 @@ public class Monster : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ãæµ¹ ½Ã ÀÌµ¿ ¹æÇâÀ» ¹Ý´ë·Î ¹Ù²Þ
+        // ï¿½æµ¹ ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ï¿½ ï¿½Ù²ï¿½
         moveDir *= new Vector2(-1, 0);
     }
 
-    // ÀÌµ¿
+    // ï¿½Ìµï¿½
     public virtual void Move()
     {
         rb.velocity = moveDir * monsterData.movementSpeed;
@@ -53,30 +53,65 @@ public class Monster : MonoBehaviour
             ReturnToPool();
         }
     }
-    // µ¥¹ÌÁö ¹Þ¾ÒÀ» ¶§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ï¿½ï¿½ ï¿½ï¿½
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
-            // ¸ó½ºÅÍ°¡ Á×À¸¸é Ç®·Î ¹ÝÈ¯
+            // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯
+            DropRandomItem();
             ReturnToPool();
         }
     }
 
-    // Ç®·Î ¹ÝÈ¯ÇÏ´Â ¸Þ¼­µå
+    // Ç®ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void ReturnToPool()
     {
         if (monsterPool != null)
         {
             health = monsterData.maxHealth;
-            gameObject.SetActive(false);  // ºñÈ°¼ºÈ­
-            monsterPool.ReturnObject(this);  // Ç®·Î ¹ÝÈ¯
+            gameObject.SetActive(false);  // ï¿½ï¿½È°ï¿½ï¿½È­
+            monsterPool.ReturnObject(this);  // Ç®ï¿½ï¿½ ï¿½ï¿½È¯
             Debug.Log("Monster returned to pool.");
         }
     }
 
-    public virtual void Attack()
+    private void DropRandomItem()
     {
+        // dropTableì´ nullì´ê±°ë‚˜ dropItemsê°€ ë¹„ì–´ ìžˆìœ¼ë©´ ë°”ë¡œ ë¦¬í„´
+        if (monsterData.dropTable == null || monsterData.dropTable.dropItems.Count == 0)
+            return;
+
+        float randomValue = Random.Range(0f, 1f);
+        float cumulativeProbability = 0f;
+
+        foreach (var dropItem in monsterData.dropTable.dropItems)
+        {
+            cumulativeProbability += dropItem.dropRate;
+
+            // ëžœë¤ ê°’ì´ cumulativeProbability ì´í•˜ì¼ ë•Œ ë“œëž
+            if (randomValue <= cumulativeProbability)
+            {
+                int dropCount = Random.Range(dropItem.minAmount, dropItem.maxAmount + 1);
+
+                for (int i = 0; i < dropCount; i++)
+                {
+                    GameObject prefabToDrop = dropItem.GetRandomPrefab();
+
+                    // ì•„ì´í…œì´ ì¡´ìž¬í•  ê²½ìš°
+                    if (prefabToDrop != null)
+                    {
+                        // ë“œëž í¬ì§€ì…˜ ìˆ˜ì •: yëŠ” 0.5 ìœ„ë¡œ ê³ ì •
+                        Vector3 dropPosition = transform.position + new Vector3(Random.Range(-1f, 1f), 0.5f, 0f);
+                        Instantiate(prefabToDrop, dropPosition, Quaternion.identity);
+                    }
+                }
+                return; // í•˜ë‚˜ì˜ DropItemë§Œ ë“œëž
+            }
+        }
     }
+
+
+
 }

@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &169868636 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 41697894657686115, guid: f9605d3adf1c94e11975da8e3d99f43e, type: 3}
-  m_PrefabInstance: {fileID: 1253717690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &627112478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 1241890369807844678, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
       propertyPath: coinText
       value: 
-      objectReference: {fileID: 169868636}
+      objectReference: {fileID: 0}
     - target: {fileID: 4119169232461797983, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -265,17 +254,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e83d310d93084953a2d3058808a0d33, type: 3}
---- !u!114 &909496765 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4612491764396145478, guid: e79c8835c673345a99942d5d475df9af, type: 3}
-  m_PrefabInstance: {fileID: 1140885340}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &931023651
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +891,7 @@ PrefabInstance:
     - target: {fileID: 35810082280032790, guid: 8822a71a4280447b29b8f7694d83b289, type: 3}
       propertyPath: heartText
       value: 
-      objectReference: {fileID: 909496765}
+      objectReference: {fileID: 0}
     - target: {fileID: 553656641520041854, guid: 8822a71a4280447b29b8f7694d83b289, type: 3}
       propertyPath: m_Name
       value: Heart

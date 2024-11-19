@@ -17,3 +17,4 @@ MonoBehaviour:
   attack: 5
   movementSpeed: 1
   attackSpeed: 1
+  dropTable: {fileID: 11400000, guid: 427e36d17d6174cbc8df7cb4b1d0acc7, type: 2}
