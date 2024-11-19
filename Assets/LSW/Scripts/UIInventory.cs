@@ -10,11 +10,11 @@ public class UIInventory : MonoBehaviour
 
     public Text itemNameText;
     public Text itemDescriptionText;
+
     void Start()
     {
         // 인벤토리 슬롯 UI 생성 (슬롯이 없을 경우 동적으로 생성)
         InitializeSlots();
-
     }
 
     private void Update()
@@ -47,24 +47,46 @@ public class UIInventory : MonoBehaviour
     {
         for (int i = 0; i < maxSlots; i++)
         {
-            if (i < inventory.items.Count)  // 아이템이 있는 경우
-            {
-                GameObject slot = itemSlotContainer.GetChild(i).gameObject;
-                slot.SetActive(true);  // 슬롯을 활성화
+            GameObject slot = itemSlotContainer.GetChild(i).gameObject;
+            ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
 
-                // ItemSlot 컴포넌트를 가져와 아이템 정보 설정
-                ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
+            if (i < inventory.items.Count)  // 인벤토리에 아이템이 있는 경우
+            {
+                ItemSO item = inventory.items[i];
+                slotComponent.SetItem(item);  // Item과 아이콘 설정
+                slot.SetActive(true);  // 슬롯을 활성화
+            }
+            else  // 인벤토리에 아이템이 없는 경우
+            {
                 if (slotComponent != null)
                 {
-                    ItemSO item = inventory.items[i];
-                    slotComponent.SetItem(item);  // Item과 아이콘 설정
+                    slotComponent.SetItem(null);  // 슬롯 비우기 (아이콘 초기화)
                 }
-            }
-            else
-            {
-                itemSlotContainer.GetChild(i).gameObject.SetActive(false);  // 슬롯을 비활성화 (아이템이 없을 때)
+                slot.SetActive(true);  // 비어 있는 슬롯도 활성화 상태 유지
             }
         }
     }
 
+    public void ClearSlot(int slotIndex)
+    {
+        if (slotIndex >= 0 && slotIndex < maxSlots)
+        {
+            // 인벤토리의 해당 슬롯의 아이템 제거
+            if (slotIndex < inventory.items.Count)
+            {
+                inventory.items.RemoveAt(slotIndex);  // 아이템 제거
+            }
+
+            // UI 업데이트
+            GameObject slot = itemSlotContainer.GetChild(slotIndex).gameObject;
+            ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
+
+            if (slotComponent != null)
+            {
+                slotComponent.SetItem(null);  // 슬롯 비우기 (아이콘 초기화)
+            }
+
+            UpdateUI();  // 전체 UI 갱신
+        }
+    }
 }

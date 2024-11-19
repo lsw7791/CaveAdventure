@@ -8,8 +8,8 @@ public class Inventory : MonoBehaviour
     // 아이템을 인벤토리에 추가하는 메서드
     public void AddItem(ItemSO item)
     {
-            items.Add(item);  // 아이템을 리스트에 추가
-            Debug.Log("Item added: " + item.itemName);  // 아이템이 추가되었음을 로그로 출력       
+        items.Add(item);  // 아이템을 리스트에 추가
+        Debug.Log("Item added: " + item.itemName);  // 아이템이 추가되었음을 로그로 출력       
     }
 
     public void RemoveItem(ItemSO item)
@@ -22,6 +22,20 @@ public class Inventory : MonoBehaviour
         else
         {
             Debug.Log("Item not found in inventory.");
+        }
+    }
+
+    // 특정 슬롯에 해당하는 아이템을 가져오는 메서드
+    public ItemSO GetItemInSlot(int slotIndex)
+    {
+        if (slotIndex >= 0 && slotIndex < items.Count)
+        {
+            return items[slotIndex];  // 해당 인덱스에 있는 아이템 반환
+        }
+        else
+        {
+            Debug.Log("Invalid slot index.");
+            return null;  // 유효하지 않은 인덱스일 경우 null 반환
         }
     }
 }
