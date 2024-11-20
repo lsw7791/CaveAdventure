@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    public ParticleSystem ParticleEffects;
+
     public ObjectPool<FireBall> fireBallPool; // FireBall 풀
     public FireBall fireBallPrefab; // FireBall 프리팹
 
@@ -12,6 +16,9 @@ public class GameManager : MonoBehaviour
             fireBallPool = new ObjectPool<FireBall>();
             fireBallPool.Initialize(fireBallPrefab, 10, transform); // 풀 초기화 (프리팹, 초기 크기, 부모 지정)
         }
+
+        ParticleEffects = GameObject.FindGameObjectWithTag("Particle").GetComponent<ParticleSystem>();
+        
     }
 
     // FireBall을 풀에서 가져오는 메서드
