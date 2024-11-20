@@ -19,6 +19,16 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     protected override void Awake()
     {
         base.Awake();
+        MonsterSet();
+    }
+
+    void Start()
+    {
+        //ObjectPool<Monster> selectedPool = goblinPool;
+        //Monster newMonster = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
+    }
+    private void MonsterSet()
+    {
         GoblinPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Goblin");
         zombiePrefab = Resources.Load<GameObject>("Prefabs/Monsters/Zombie");
         demonPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Demon");
@@ -39,16 +49,8 @@ public class MonsterManager : MonoSingleton<MonsterManager>
             demonPool.Initialize(demonPrefab.GetComponent<Monster>(), 6);
         }
     }
-
-    void Start()
-    {
-        //ObjectPool<Monster> selectedPool = goblinPool;
-        //Monster newMonster = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
-    }
-
     public void Stage1Monster()
     {
-        Debug.Log("343443");
         ObjectPool<Monster> selectedPool = goblinPool;
         goblinMonsters[0] = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
         goblinMonsters[1] = GetMonster(new Vector3(12f, -3f, 0), selectedPool);

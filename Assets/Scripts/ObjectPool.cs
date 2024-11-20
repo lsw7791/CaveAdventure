@@ -17,6 +17,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         for (int i = 0; i < initialSize; i++)
         {
             T obj = Object.Instantiate(prefab, parent);  // ��ü ����
+            Object.DontDestroyOnLoad(obj.gameObject);  // 씬 변경 시 파괴되지 않도록 설정
             obj.gameObject.SetActive(false);  // ��Ȱ��ȭ�Ͽ� Ǯ�� ����
             pool.Enqueue(obj);  // ť�� ��ü �߰�
         }
