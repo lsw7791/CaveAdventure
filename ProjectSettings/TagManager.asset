@@ -11,6 +11,7 @@ TagManager:
   - Gimmick
   - Item
   - Particle
+  - Portal
   layers:
   - Default
   - TransparentFX
