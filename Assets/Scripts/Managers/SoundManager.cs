@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
-    public SoundManager instance;
     private GameObject _bgmObj;
     private GameObject _sfxObj;
 

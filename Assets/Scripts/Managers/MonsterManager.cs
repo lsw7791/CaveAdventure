@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MonsterManager : MonoSingleton<MonsterManager>
 {
-    public MonsterManager instance;
     public GameObject GoblinPrefab;
     public GameObject zombiePrefab;
     public GameObject demonPrefab;
