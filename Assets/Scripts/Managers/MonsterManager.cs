@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class MonsterManager : MonoSingleton<MonsterManager>
 {
-    public GameObject GoblinPrefab;  // ���� 1 ������
-    public GameObject zombiePrefab;  // ���� 2 ������
-    public GameObject demonPrefab;  // ���� 3 ������
+    public MonsterManager instance;
+    public GameObject GoblinPrefab;
+    public GameObject zombiePrefab;
+    public GameObject demonPrefab;
 
     public ObjectPool<Monster> goblinPool;
     public ObjectPool<Monster> zombiePool;
@@ -13,17 +14,15 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
     protected override void Awake()
     {
-        base.Awake();  // �ʿ��ϸ� �θ��� Awake �޼��带 ȣ��
-        // ���ҽ����� ������ �ҷ�����
+        base.Awake();
         GoblinPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Goblin");
         zombiePrefab = Resources.Load<GameObject>("Prefabs/Monsters/Zombie");
         demonPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Demon");
 
-        // Ǯ �ʱ�ȭ
         if (GoblinPrefab != null)
         {
             goblinPool = new ObjectPool<Monster>();
-            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 6);  // ���� Ǯ�� 6���� �ʱ�ȭ
+            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 6);
         }
         if (zombiePrefab != null)
         {

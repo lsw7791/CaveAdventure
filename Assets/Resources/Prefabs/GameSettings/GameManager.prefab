@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7619526079942769903}
   - component: {fileID: 1420156182735664332}
   - component: {fileID: 2001789364160870401}
+  - component: {fileID: 7147974545661634500}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MonoBehaviour:
   GoblinPrefab: {fileID: 0}
   zombiePrefab: {fileID: 0}
   demonPrefab: {fileID: 0}
+--- !u!114 &7147974545661634500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465653330623018141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f95ba3097f93bb4b86756c16382448a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireBallPrefab: {fileID: 0}
