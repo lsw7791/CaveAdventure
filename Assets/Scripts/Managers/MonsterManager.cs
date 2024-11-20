@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MonsterManager : MonoSingleton<MonsterManager>
 {
-    public MonsterManager instance;
     public GameObject GoblinPrefab;
     public GameObject zombiePrefab;
     public GameObject demonPrefab;
@@ -11,6 +10,11 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     public ObjectPool<Monster> goblinPool;
     public ObjectPool<Monster> zombiePool;
     public ObjectPool<Monster> demonPool;
+
+        // 몬스터 배열을 선언합니다.
+        Monster[] goblinMonsters = new Monster[5];  // 5개의 Goblin 몬스터 배열
+        Monster[] zombieMonsters = new Monster[5];   // 5개의 Zombie 몬스터 배열
+        Monster[] demonMonsters = new Monster[5];    // 5개의 Demon 몬스터 배열
 
     protected override void Awake()
     {
@@ -38,20 +42,27 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
     void Start()
     {
-        // ���͸� Ǯ���� ��������
-        Vector3 spawnPosition = new Vector3(2f, -3f, 0);  // ���͸� ������ ��ġ
-        ObjectPool<Monster> selectedPool = goblinPool;  // ������ Ǯ ����
-
-        Monster newMonster = GetMonster(spawnPosition, selectedPool);
+        //ObjectPool<Monster> selectedPool = goblinPool;
+        //Monster newMonster = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
     }
 
-    // ���� Ǯ���� ������
+    public void Stage1Monster()
+    {
+        Debug.Log("343443");
+        ObjectPool<Monster> selectedPool = goblinPool;
+        goblinMonsters[0] = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
+        goblinMonsters[1] = GetMonster(new Vector3(12f, -3f, 0), selectedPool);
+        goblinMonsters[2] = GetMonster(new Vector3(22f, -3f, 0), selectedPool);
+        goblinMonsters[3] = GetMonster(new Vector3(24f, -3f, 0), selectedPool);
+
+
+
+    }
     public Monster GetMonster(Vector3 position, ObjectPool<Monster> monsterPool)
     {
         Monster monster = monsterPool.GetObject(position, Quaternion.identity);
         if (monster != null)
         {
-            // Ǯ���� ������ ���� �ʱ�ȭ
             monster.Initialize(monsterPool);
         }
         else

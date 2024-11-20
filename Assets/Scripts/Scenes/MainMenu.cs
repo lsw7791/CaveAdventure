@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
         // "GameScene"을 새로운 게임 씬으로 지정하고 로드
         SceneManager.LoadScene("MainScene");  // "GameScene"은 실제 게임 씬 이름으로 변경
         GameManager.Instance.CurrentMap = 1;
+        GameManager.Instance.SetStage(GameManager.Instance.CurrentMap);
     }
 
     // LOAD GAME 버튼 클릭 시 호출되는 함수

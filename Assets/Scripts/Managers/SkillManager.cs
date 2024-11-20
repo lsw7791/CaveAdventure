@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SkillManager : MonoSingleton<SkillManager>
 {
-    public SkillManager instance;
     public ObjectPool<FireBall> fireBallPool; // FireBall Ǯ
     [SerializeField] private FireBall fireBallPrefab;
 
