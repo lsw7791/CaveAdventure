@@ -56,8 +56,11 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         goblinMonsters[1] = GetMonster(new Vector3(12f, -3f, 0), selectedPool);
         goblinMonsters[2] = GetMonster(new Vector3(22f, -3f, 0), selectedPool);
         goblinMonsters[3] = GetMonster(new Vector3(24f, -3f, 0), selectedPool);
-
-
+    }
+    public void Stage2Monster()
+    {
+        ObjectPool<Monster> selectedPool = goblinPool;
+        goblinMonsters[0] = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
 
     }
     public Monster GetMonster(Vector3 position, ObjectPool<Monster> monsterPool)

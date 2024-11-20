@@ -11911,7 +11911,7 @@ GameObject:
   - component: {fileID: 3142080679011539635}
   - component: {fileID: 3227918233504090535}
   m_Layer: 0
-  m_Name: Grid(Mine1)
+  m_Name: GridMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

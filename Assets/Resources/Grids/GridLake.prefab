@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2489621024497352774}
   - component: {fileID: 1067082980052327921}
   m_Layer: 0
-  m_Name: Grid(Lake)
+  m_Name: GridLake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
