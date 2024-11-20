@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject inventoryUI;
     public GameObject Player;
 
     [Header("Movement")]
@@ -74,15 +73,6 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
             animator.SetBool("isJumping", true);
-        }
-    }
-
-    public void OnInventoryToggle(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            bool isActive = inventoryUI.activeSelf;
-            inventoryUI.SetActive(!isActive);
         }
     }
 
