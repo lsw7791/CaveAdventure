@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public FireBall fireBallPrefab;
-    public Transform firePoint;
+    [SerializeField] private FireBall fireBallPrefab;
+    [SerializeField] private Transform firePoint;
     private ObjectPool<FireBall> fireBallPool;
     private SpriteRenderer spriteRenderer; // SpriteRenderer 참조
-
+    private void Awake()
+    {
+        fireBallPrefab = Resources.Load<FireBall>("Prefabs/Skills/FireBall");
+        firePoint = GetComponent<Transform>();
+    }
     private void Start()
     {
         fireBallPool = new ObjectPool<FireBall>();
