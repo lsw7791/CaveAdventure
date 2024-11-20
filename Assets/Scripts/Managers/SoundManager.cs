@@ -29,7 +29,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         _bgmSource.volume = 0.5f;
         _sfxSource.volume = 0.5f;
         PlayBGM(bgmClip);
-        PlayCollsionSFX();
     }
     private void SetAudioSource()
     {
