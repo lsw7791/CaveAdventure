@@ -16,7 +16,7 @@ public class BuffAttack : MonoBehaviour, IBuff
     public void ApplyBuff(Player player)
     {
         // 게임매니저를 통해 FireBall 풀의 모든 FireBall에 데미지 배율 적용
-        gameManager.ApplyDamageMultiplierToAllFireBalls(attackMultiplier); // 모든 FireBall의 데미지 배율을 2배로 설정
+        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(attackMultiplier); // 모든 FireBall의 데미지 배율을 2배로 설정
         player.StartCoroutine(RemoveBuffAfterDuration());
     }
 
@@ -24,13 +24,13 @@ public class BuffAttack : MonoBehaviour, IBuff
     public void RemoveBuff(Player player)
     {
         // 게임매니저를 통해 FireBall 풀의 모든 FireBall에 원래 데미지 배율 적용
-        gameManager.ApplyDamageMultiplierToAllFireBalls(1f); // 모든 FireBall의 데미지 배율을 원래대로 설정
+        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(1f); // 모든 FireBall의 데미지 배율을 원래대로 설정
     }
 
     // 버프 해제 코루틴
     private System.Collections.IEnumerator RemoveBuffAfterDuration()
     {
         yield return new WaitForSeconds(duration);
-        gameManager.ApplyDamageMultiplierToAllFireBalls(1f); // 원래 데미지 배율로 복원
+        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(1f); // 원래 데미지 배율로 복원
     }
 }
