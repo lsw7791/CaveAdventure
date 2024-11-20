@@ -27,20 +27,14 @@ public class Player : MonoBehaviour
     {
         Vector3 firePointPosition = firePoint.position;
 
-        // ObjectPool에서 FireBall 가져오기
         FireBall fireBall = fireBallPool.GetObject(firePointPosition, firePoint.rotation);
-        if (fireBall != null)
-        {
             // SpriteRenderer의 flipX 상태를 기반으로 발사 방향 설정
-            float direction = spriteRenderer.flipX ? -1f : 1f; // flipX가 true면 왼쪽(-1), false면 오른쪽(1)
-            Vector2 dir = new Vector2(direction, 0); // x축 방향으로만 발사
+        float direction = spriteRenderer.flipX ? -1f : 1f; // flipX가 true면 왼쪽(-1), false면 오른쪽(1)
+        Vector2 dir = new Vector2(direction, 0); // x축 방향으로만 발사
 
-            fireBall.Shoot(dir); // 발사체에 방향 전달
-            fireBall.SetPool(fireBallPool);
-        }
-        else
-        {
-            Debug.LogWarning("Failed to get FireBall from ObjectPool.");
-        }
+        fireBall.Shoot(dir); // 발사체에 방향 전달
+        fireBall.SetPool(fireBallPool);
     }
+
 }
+
