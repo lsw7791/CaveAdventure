@@ -7,8 +7,8 @@ public class SoundManager : MonoSingleton<SoundManager>
     private GameObject _bgmObj;
     private GameObject _sfxObj;
 
-    private AudioSource _bgmSource;
-    private AudioSource _sfxSource;
+    public AudioSource _bgmSource;
+    public AudioSource _sfxSource;
 
     [Header("BGM")]
     [SerializeField] private AudioClip bgmClip;
