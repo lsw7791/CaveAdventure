@@ -5,9 +5,10 @@ public class Box : MonoBehaviour
 {
     public Sprite openBox;  // 변경될 이미지 (상자가 열린 상태의 이미지)
     private SpriteRenderer spriteRenderer;  // 상자의 SpriteRenderer
+    public GameObject portal;
 
     public GameObject[] firework;  // 상자 열릴 때 나타낼 이펙트 (파티클 시스템 등)
-    public float effectDuration = 1.5f;  // 이펙트가 지속되는 시간
+    public float effectDuration;  // 이펙트가 지속되는 시간
 
     private bool isOpened = false;  // 상자가 열렸는지 체크하는 변수
 
@@ -39,6 +40,8 @@ public class Box : MonoBehaviour
 
         // 일정 시간 후 이펙트를 비활성화
         StartCoroutine(DeactivateEffectsAfterDelay(effectDuration));
+
+        portal.SetActive(true);
     }
 
     // 상자 이미지 변경
