@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     public ParticleSystem ParticleEffects;
 
     public ObjectPool<FireBall> fireBallPool; // FireBall 풀
-    public FireBall fireBallPrefab; // FireBall 프리팹
+    [SerializeField] private FireBall fireBallPrefab;
 
     private void Awake()
     {
+        fireBallPrefab = Resources.Load<FireBall>("Prefabs/Skills/FireBall");
         if (fireBallPool == null)
         {
             fireBallPool = new ObjectPool<FireBall>();
