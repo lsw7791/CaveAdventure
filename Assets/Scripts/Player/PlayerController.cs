@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,8 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        //Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        Vector2 dir = transform.right * curMovementInput.x;
+        Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
         dir *= moveSpeed;
         //dir.y = _rigidbody.velocity.y;
 
@@ -105,9 +105,11 @@ public class PlayerController : MonoBehaviour
         {
             if (curMovementInput.x != 0)
             {
-                _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);  // X축 속도를 0으로 설정
+                _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);// X축 속도를 0으로 설정
             }
-            animator.SetBool("isfalling", false);
+            if (_rigidbody.velocity.y < 0)
+                _rigidbody.velocity = new Vector2(0, -4);
+                animator.SetBool("isfalling", false);
         }
     }
 
@@ -122,10 +124,10 @@ public class PlayerController : MonoBehaviour
     }
     void Ladder(float k)
     {
-        _rigidbody.velocity = new Vector2(0, 0);
+        
         if (this.tag == "InLadder")
         {
-
+            _rigidbody.velocity = new Vector2(0, 0);
             isGrounded = false;
             Player.layer = 9;
             _rigidbody.gravityScale = 0;
