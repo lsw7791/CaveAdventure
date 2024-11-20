@@ -13,11 +13,11 @@ public class GameManager : MonoSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        ParticleEffects = GameObject.FindGameObjectWithTag("Particle").GetComponent<ParticleSystem>();
+        //ParticleEffects = GameObject.FindGameObjectWithTag("Particle").GetComponent<ParticleSystem>();
         CurrentMap = (int)MyEnum.MainMenu;
     }
 
-    void SetStage(int stageNum)
+    public void SetStage(int stageNum)
     {
         switch (stageNum)
         {
@@ -25,7 +25,7 @@ public class GameManager : MonoSingleton<GameManager>
                 // TODO : 생성된 모든 오브젝트를 풀로 반환
                 break;
             case 1:
-                // TODO : 1스테이지 세팅
+                MonsterManager.Instance.Stage1Monster();
                 break;
             case 2:
                 // TODO : 2스테이지 세팅
