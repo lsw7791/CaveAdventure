@@ -5,6 +5,8 @@ public class FireBall : MonoBehaviour
     public SkillSO fireBallData;  // 파이어볼 데이터 (스킬 속성)
     private Rigidbody2D rb;       // 파이어볼 Rigidbody2D
     public Vector2 fireBallDir = Vector2.right; // 파이어볼 방향 (기본값: 오른쪽)
+    public GameObject hitEff;
+    public Transform effPos;
     private ObjectPool<FireBall> pool;           // 오브젝트 풀 참조
 
     public float damageMultiplier = 1f;         // 데미지 배율 (기본 1배)

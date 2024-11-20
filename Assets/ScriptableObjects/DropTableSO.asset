@@ -19,5 +19,5 @@ MonoBehaviour:
     - {fileID: 5047845038175564796, guid: 57efbbcd5af0a4af8bafbbb92b5edba6, type: 3}
     - {fileID: 8810615909459362574, guid: 442e9c5a640e74d53978a74a9047f81c, type: 3}
     dropRate: 1
-    minAmount: 10
-    maxAmount: 10
+    minAmount: 1
+    maxAmount: 3
