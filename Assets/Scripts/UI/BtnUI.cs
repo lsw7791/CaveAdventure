@@ -5,6 +5,7 @@ using UnityEngine;
 public class BtnUI : MonoBehaviour
 {
     public GameObject soundUI;
+    public GameObject informationUI;
 
     private bool isPaused = false;
 
@@ -30,7 +31,7 @@ public class BtnUI : MonoBehaviour
 
     public void OnclickInformationUIBtn()
     {
-        //informationUI.SetActive(!informationUI.activeSelf);
+        informationUI.SetActive(!informationUI.activeSelf);
     }
 }
 
