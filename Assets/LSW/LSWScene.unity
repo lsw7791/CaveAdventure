@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1465653330623018141, guid: 308bcd7858631794f924338cb2155285, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7619526079942769903, guid: 308bcd7858631794f924338cb2155285, type: 3}
       propertyPath: ParticleEffects
       value: 

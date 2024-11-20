@@ -1,7 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject[] FireBallPrefab;
+
+    private bool isInPortalAnimation = false; 
 
     private void Awake()
     {
@@ -121,6 +122,11 @@ public class PlayerController : MonoBehaviour
             this.gameObject.tag = "InLadder";
             animator.SetBool("isLadderIdle", true);
         }
+
+        if (other.gameObject.CompareTag("Portal")) // Portal 태그 확인
+        {
+                StartPortalAnimation();
+        }
     }
     void Ladder(float k)
     {
@@ -166,5 +172,21 @@ public class PlayerController : MonoBehaviour
             LadderOut();
             animator.SetTrigger("isIdle");
         }
+    }
+
+    private void StartPortalAnimation()
+    {
+        isInPortalAnimation = true; // 애니메이션 실행 상태 설정
+        animator.SetBool("isPortalAnimation", true); // Animator 파라미터 변경
+
+        // 애니메이션 길이 확인 후 실행 완료 콜백 등록
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        Invoke(nameof(EndPortalAnimation), animationLength);
+    }
+
+    private void EndPortalAnimation()
+    {
+        animator.SetBool("isPortalAnimation", false); // Animator 파라미터 초기화
+        isInPortalAnimation = false; // 상태 초기화
     }
 }
