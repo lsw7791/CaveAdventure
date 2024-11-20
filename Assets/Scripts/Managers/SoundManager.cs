@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
+    public SoundManager instance;
     private GameObject _bgmObj;
     private GameObject _sfxObj;
 
@@ -28,7 +29,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         _bgmSource.volume = 0.5f;
         _sfxSource.volume = 0.5f;
         PlayBGM(bgmClip);
-        PlayCollsionSFX();
     }
     private void SetAudioSource()
     {
