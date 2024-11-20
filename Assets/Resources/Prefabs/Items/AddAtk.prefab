@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 796602713350265070}
   - component: {fileID: 3303312102554441073}
   - component: {fileID: 5219419377967429632}
-  - component: {fileID: 6622757869348267754}
   - component: {fileID: -6611905574690575359}
   - component: {fileID: 6649826644898538144}
+  - component: {fileID: -7245577693601865263}
   m_Layer: 0
   m_Name: AddAtk
   m_TagString: Item
@@ -125,33 +125,6 @@ MonoBehaviour:
   attackMultiplier: 2
   duration: 10
   gameManager: {fileID: 0}
---- !u!50 &6622757869348267754
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8810615909459362574}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &-6611905574690575359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,3 +182,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36a1194935b94a4e93c8bf8b16d8d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &-7245577693601865263
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810615909459362574}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

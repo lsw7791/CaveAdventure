@@ -2,35 +2,31 @@ using UnityEngine;
 
 public class BuffAttack : MonoBehaviour, IBuff
 {
-    public float attackMultiplier = 2f;
-    public float duration = 10f;
+    public float attackMultiplier = 2f; // 데미지 배율
+    public float duration = 10f;        // 버프 지속 시간
     public float BuffDuration => duration;
-    public GameManager gameManager;
 
-    private void Awake()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
-
-    // 플레이어의 FireBall을 사용하도록 수정
     public void ApplyBuff(Player player)
     {
-        // 게임매니저를 통해 FireBall 풀의 모든 FireBall에 데미지 배율 적용
-        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(attackMultiplier); // 모든 FireBall의 데미지 배율을 2배로 설정
-        player.StartCoroutine(RemoveBuffAfterDuration());
+        // FireBall 데미지 배율을 증가
+        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(attackMultiplier);
     }
 
-    // 버프 해제 메서드
     public void RemoveBuff(Player player)
     {
-        // 게임매니저를 통해 FireBall 풀의 모든 FireBall에 원래 데미지 배율 적용
-        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(1f); // 모든 FireBall의 데미지 배율을 원래대로 설정
+        // FireBall 데미지 배율을 원래 값으로 복구
+        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(1f);
     }
 
-    // 버프 해제 코루틴
-    private System.Collections.IEnumerator RemoveBuffAfterDuration()
+    public void ActivateEffect(Player player)
     {
-        yield return new WaitForSeconds(duration);
-        SkillManager.Instance.ApplyDamageMultiplierToAllFireBalls(1f); // 원래 데미지 배율로 복원
+        Transform effect = player.transform.Find("BuffAttEff");
+        if (effect != null) effect.gameObject.SetActive(true); // 효과 오브젝트 활성화
+    }
+
+    public void DeactivateEffect(Player player)
+    {
+        Transform effect = player.transform.Find("BuffAttEff");
+        if (effect != null) effect.gameObject.SetActive(false); // 효과 오브젝트 비활성화
     }
 }
