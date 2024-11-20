@@ -49,8 +49,10 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
+        //Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
+        Vector2 dir = transform.right * curMovementInput.x;
         dir *= moveSpeed;
+        //dir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = new Vector2(dir.x, _rigidbody.velocity.y);
     }
