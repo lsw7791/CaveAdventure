@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MonsterManager : MonoSingleton<MonsterManager>
 {
-    public GameObject GoblinPrefab;  // ¸ó½ºÅÍ 1 ÇÁ¸®ÆÕ
-    public GameObject zombiePrefab;  // ¸ó½ºÅÍ 2 ÇÁ¸®ÆÕ
-    public GameObject demonPrefab;  // ¸ó½ºÅÍ 3 ÇÁ¸®ÆÕ
+    public GameObject GoblinPrefab;  // ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject zombiePrefab;  // ï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject demonPrefab;  // ï¿½ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     public ObjectPool<Monster> goblinPool;
     public ObjectPool<Monster> zombiePool;
@@ -13,17 +13,17 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
     protected override void Awake()
     {
-        base.Awake();  // ÇÊ¿äÇÏ¸é ºÎ¸ðÀÇ Awake ¸Þ¼­µå¸¦ È£Ãâ
-        // ¸®¼Ò½º¿¡¼­ ÇÁ¸®ÆÕ ºÒ·¯¿À±â
-        GoblinPrefab = Resources.Load<GameObject>("Prefab/Goblin");
-        zombiePrefab = Resources.Load<GameObject>("Prefab/Zombie");
-        demonPrefab = Resources.Load<GameObject>("Prefab/Demon");
+        base.Awake();  // ï¿½Ê¿ï¿½ï¿½Ï¸ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½ Awake ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½
+        // ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+        GoblinPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Goblin");
+        zombiePrefab = Resources.Load<GameObject>("Prefabs/Monsters/Zombie");
+        demonPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Demon");
 
-        // Ç® ÃÊ±âÈ­
+        // Ç® ï¿½Ê±ï¿½È­
         if (GoblinPrefab != null)
         {
             goblinPool = new ObjectPool<Monster>();
-            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 6);  // ¸ó½ºÅÍ Ç®À» 6°³·Î ÃÊ±âÈ­
+            goblinPool.Initialize(GoblinPrefab.GetComponent<Monster>(), 6);  // ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ 6ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         }
         if (zombiePrefab != null)
         {
@@ -39,20 +39,20 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
     void Start()
     {
-        // ¸ó½ºÅÍ¸¦ Ç®¿¡¼­ °¡Á®¿À±â
-        Vector3 spawnPosition = new Vector3(2f, -3f, 0);  // ¸ó½ºÅÍ¸¦ »ý¼ºÇÒ À§Ä¡
-        ObjectPool<Monster> selectedPool = goblinPool;  // »ý¼ºÇÒ Ç® ¼±ÅÃ
+        // ï¿½ï¿½ï¿½Í¸ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        Vector3 spawnPosition = new Vector3(2f, -3f, 0);  // ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+        ObjectPool<Monster> selectedPool = goblinPool;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç® ï¿½ï¿½ï¿½ï¿½
 
         Monster newMonster = GetMonster(spawnPosition, selectedPool);
     }
 
-    // ¸ó½ºÅÍ Ç®¿¡¼­ ²¨³»±â
+    // ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public Monster GetMonster(Vector3 position, ObjectPool<Monster> monsterPool)
     {
         Monster monster = monsterPool.GetObject(position, Quaternion.identity);
         if (monster != null)
         {
-            // Ç®¿¡¼­ °¡Á®¿Â ¸ó½ºÅÍ ÃÊ±âÈ­
+            // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             monster.Initialize(monsterPool);
         }
         else
@@ -62,10 +62,10 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         return monster;
     }
 
-    // ¸ó½ºÅÍ¸¦ Ç®¿¡ ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½Í¸ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯
     public void ReturnMonster(Monster monster, ObjectPool<Monster> monsterPool)
     {
-        monsterPool.ReturnObject(monster);  // ¸ó½ºÅÍ Ç®¿¡ ¹ÝÈ¯
+        monsterPool.ReturnObject(monster);  // ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯
         Debug.Log("Monster returned to pool.");
     }
 }

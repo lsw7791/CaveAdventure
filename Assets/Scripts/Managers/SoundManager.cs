@@ -32,12 +32,12 @@ public class SoundManager : MonoSingleton<SoundManager>
     }
     private void SetAudioSource()
     {
-        // AudioManagerÀÇ ÀÚ½ÄÀ¸·Î AudioSource ÄÄÆ÷³ÍÆ® °¡Áø @BGM »ý¼º
+        // AudioManagerï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ AudioSource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ @BGM ï¿½ï¿½ï¿½ï¿½
         _bgmObj = new GameObject("@BGM");
         _bgmObj.transform.parent = transform;
         _bgmSource = _bgmObj.AddComponent<AudioSource>();
 
-        // AudioManagerÀÇ ÀÚ½ÄÀ¸·Î AudioSource ÄÄÆ÷³ÍÆ® °¡Áø @SFX »ý¼º
+        // AudioManagerï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ AudioSource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ @SFX ï¿½ï¿½ï¿½ï¿½
         _sfxObj = new GameObject("@SFX");
         _sfxObj.transform.parent = transform;
         _sfxSource = _sfxObj.AddComponent<AudioSource>();
@@ -45,11 +45,11 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void SetAudioClip()
     {
-        // Resource Æú´õ¿¡¼­ °¢ AudioClip¿¡ ¸Â´Â ÆÄÀÏ ·Îµå
-        bgmClip = Resources.Load<AudioClip>("Prefab/Sounds/ambient-game-67014");
-        collisionSfx = Resources.Load<AudioClip>("Prefab/Sounds/game-start-6104");
-        clickSfx = Resources.Load<AudioClip>("Prefab/Sounds/game-start-6104");
-        itemSfx = Resources.Load<AudioClip>("Prefab/Sounds/collect-ring-15982");
+        // Resource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ AudioClipï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½
+        bgmClip = Resources.Load<AudioClip>("Prefabs/Sounds/ambient-game-67014");
+        collisionSfx = Resources.Load<AudioClip>("Prefabs/Sounds/game-start-6104");
+        clickSfx = Resources.Load<AudioClip>("Prefabs/Sounds/game-start-6104");
+        itemSfx = Resources.Load<AudioClip>("Prefabs/Sounds/collect-ring-15982");
     }
 
     public void PlayBGM(AudioClip clip)

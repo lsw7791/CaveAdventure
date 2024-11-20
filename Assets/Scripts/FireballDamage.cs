@@ -15,7 +15,7 @@ public class FireBallDamage : MonoBehaviour
     public void Shoot(Vector2 direction)
     {
         // 풀에서 FireBall을 가져옵니다
-        FireBall fireBall = gameManager.GetFireBallFromPool(transform.position, Quaternion.identity); // 현재 위치와 기본 회전값으로 FireBall 가져오기
+        FireBall fireBall = SkillManager.Instance.GetFireBallFromPool(transform.position, Quaternion.identity); // 현재 위치와 기본 회전값으로 FireBall 가져오기
         if (fireBall != null)
         {
             fireBall.SetDamageMultiplier(damageMultiplier); // 데미지 배율 설정
