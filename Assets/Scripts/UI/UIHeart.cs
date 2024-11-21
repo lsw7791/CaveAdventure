@@ -18,10 +18,6 @@ public class UIHeart : MonoBehaviour
                 Debug.LogError("Text 컴포넌트를 자식 오브젝트에서 찾을 수 없습니다. 인스펙터에서 수동으로 할당하세요.");
             }
         }
-
-        // 게임 시작 시 저장된 하트 수를 불러옵니다.
-        GameManager.Instance.uiHeart = this;
-        GameManager.Instance.playerLife = PlayerPrefs.GetInt("HeartCount", 1);  // 기본값은 1로 설정
     }
 
     private void Start()

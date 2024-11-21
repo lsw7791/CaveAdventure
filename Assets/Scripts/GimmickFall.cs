@@ -17,7 +17,7 @@ public class GimmickFall : MonoBehaviour
     {
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         gameObject.SetActive(false);
-        GameManager.Instance.Loss();
+        GameManager.Instance.PlayerLifeLoss();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

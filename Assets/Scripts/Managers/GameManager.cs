@@ -81,6 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void SetStage(int stageNum)
     {
+        PlayerPrefs.GetInt("HeartCount", 1);
         AllSetActiveFalse();
         Time.timeScale = 1;
         CurrentMap = stageNum; // 현재 맵 번호 업데이트
@@ -232,20 +233,20 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.SetInt("HeartCount", playerLife);  // 새로운 하트 수 저장
         PlayerPrefs.Save();  // 변경 사항 저장
     }
-    public void Collect()
+    public void PlayerLifeAdd()
     {
         // 하트를 증가시키고 UI를 갱신합니다.
-        GameManager.Instance.playerLife += 1;
+        playerLife += 1;
         UpdateUI();
     }
 
-    public void Loss()
+    public void PlayerLifeLoss()
     {
-        GameManager.Instance.playerLife -= 1;  // 하트 감소
+        playerLife -= 1;  // 하트 감소
 
-        if (GameManager.Instance.playerLife <= 0)
+        if (playerLife <= 0)
         {
-            GameManager.Instance.GameOver();
+            GameOver();
         }
         UpdateUI();
     }

@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.time - lastCollisionTime >= collisionCooldown)
             {
-                GameManager.Instance.Loss();
+                GameManager.Instance.PlayerLifeLoss();
             }
         }
 
