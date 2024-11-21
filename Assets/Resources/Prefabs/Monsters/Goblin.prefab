@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 370282455510827224}
   - component: {fileID: 8820402337990553317}
   - component: {fileID: 8230663133945681278}
-  - component: {fileID: 2693655503994533584}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Monster
@@ -197,16 +196,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &2693655503994533584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880653439876537511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9436c1219617429f93c63f4dd43ab15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeIncrement: 1
