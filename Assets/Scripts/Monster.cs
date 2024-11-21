@@ -8,7 +8,6 @@ public class Monster : MonoBehaviour
     public int health;
     Vector2 moveDir;
     private Rigidbody2D rb;
-    private Animator animator;
     private ObjectPool<Monster> monsterPool;  // ���͸� ��ȯ�� Ǯ ����
 
     // MonsterManager���� �ش� Ǯ�� ������ �� �ֵ��� �߰��ϴ� ������ �Ǵ� �޼���
@@ -34,10 +33,12 @@ public class Monster : MonoBehaviour
         Move();
         MonsterDrop();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         moveDir *= new Vector2(-1, 0);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         moveDir *= new Vector2(-1, 0);

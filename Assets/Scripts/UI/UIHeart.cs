@@ -30,9 +30,18 @@ public class UIHeart : MonoBehaviour
         PlayerPrefs.Save();  // 변경 사항 저장
     }
 
+    public void Loss()
+    {
+        CurrentLives -= lifeIncrement ;  // 하트 감소
+        PlayerPrefs.SetInt("HeartCount", CurrentLives);  // 새로운 하트 수 저장
+        PlayerPrefs.Save();  // 변경 사항 저장
+        
+    }
+
     private void UpdateUI()
     {
         // UI 갱신
+        
         Text heartText = GetComponentInChildren<Text>();
         if (heartText != null)
         {

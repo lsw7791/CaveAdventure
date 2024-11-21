@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 55aaab080686c0344aa4c671e61e376f, type: 2}
   health: 0
+  uiHeart: {fileID: 0}
 --- !u!50 &8230663133945681278
 Rigidbody2D:
   serializedVersion: 4

@@ -41,7 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
         switch (stageNum)
         {
             case 0:
-                // TODO : »ý¼ºµÈ ¸ðµç ¿ÀºêÁ§Æ®¸¦ Ç®·Î ¹ÝÈ¯
+                // TODO : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯
                 break;
             case 1:
                 grid1Instance.SetActive(true);
@@ -53,11 +53,18 @@ public class GameManager : MonoSingleton<GameManager>
                 MonsterManager.Instance.Stage1Monster();
                 break;
             case 2:
+                grid1Instance.SetActive(false);
+                Ground1Gimmick.SetActive(false);
+                Fall1Gimmick.SetActive(false);
                 grid2Instance.SetActive(true);
+                Ground1Gimmick.SetActive(true);
+                Ground1Gimmick.transform.position = new Vector2(16f, 4.7f);
+                Ground2Gimmick.SetActive(true);
+                Ground2Gimmick.transform.position = new Vector2(8f, -4.4f);
                 MonsterManager.Instance.Stage2Monster();
                 break;
             default:
-                // TODO : »ý¼ºµÈ ¸ðµç ¿ÀºêÁ§Æ®¸¦ Ç®·Î ¹ÝÈ¯ ÈÄ ¸ÞÀÎ¸Þ´º·Î ÀÌµ¿
+                // TODO : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸Þ´ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
                 break;
         }
     }
@@ -77,5 +84,14 @@ public class GameManager : MonoSingleton<GameManager>
         Ground2Gimmick.SetActive(false);
         Fall1Gimmick = Instantiate(Gimmick3Prefab, Vector3.zero, Quaternion.identity, transform);
         Fall1Gimmick.SetActive(false);
+    }
+    void AllSetActiveFalse()
+    {
+        grid1Instance.SetActive(false);
+        grid2Instance.SetActive(false);
+        Ground1Gimmick.SetActive(false);
+        Ground2Gimmick.SetActive(false);
+        Fall1Gimmick.SetActive(false);
+        MonsterManager.Instance.StageMonsterReturn();
     }
 }
