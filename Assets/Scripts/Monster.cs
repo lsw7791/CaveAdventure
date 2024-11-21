@@ -10,6 +10,8 @@ public class Monster : MonoBehaviour
     private Rigidbody2D rb;
     private ObjectPool<Monster> monsterPool;  // ���͸� ��ȯ�� Ǯ ����
 
+    public ParticleSystem hit;
+
     // MonsterManager���� �ش� Ǯ�� ������ �� �ֵ��� �߰��ϴ� ������ �Ǵ� �޼���
     public void Initialize(ObjectPool<Monster> pool)
     {
@@ -37,6 +39,13 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         moveDir *= new Vector2(-1, 0);
+
+        if (other.CompareTag("Player"))
+        {
+
+            Instantiate(hit, transform.position, Quaternion.identity);
+            hit.Play();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

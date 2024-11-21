@@ -24,6 +24,13 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] GameObject Key3Prefab;
     [SerializeField] GameObject Key4Prefab;
 
+    private GameObject grid1Instance;
+    private GameObject grid2Instance;
+    private GameObject Ground1Gimmick;
+    private GameObject Ground2Gimmick;
+    private GameObject Fall1Gimmick;
+    private GameObject Ladder;
+    private GameObject player;
 
 
     GameObject grid1Instance;
@@ -43,8 +50,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         base.Awake();
 
-        // ParticleEffects = GameObject.FindGameObjectWithTag("Particle").GetComponent<ParticleSystem>();
-        CurrentMap = PlayerPrefs.GetInt("SavedMap", (int)MyEnum.MainMenu); // 저장된 맵 번호 불러오기
+        // Resource에서 필요한 오브젝트 로드
         Grid1 = Resources.Load<GameObject>("Grids/GridLake");
         Grid2 = Resources.Load<GameObject>("Grids/GridMine");
         Gimmick1Prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/GimmickGround1");
@@ -57,9 +63,7 @@ public class GameManager : MonoSingleton<GameManager>
         Key3Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key3");
         Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
 
-
-
-
+        // 초기화
         player = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity, transform);
         player.SetActive(false);
         SpawnAllGrid();
@@ -67,6 +71,9 @@ public class GameManager : MonoSingleton<GameManager>
         SpawnKey();
         SetStage(CurrentMap); // 저장된 맵 상태로 복원
         KeyNum = 0;
+
+        // 저장된 맵 번호를 불러와 스테이지 설정
+        LoadCurrentMap();
     }
 
     public void SetStage(int stageNum)
@@ -117,7 +124,7 @@ public class GameManager : MonoSingleton<GameManager>
 
                 break;
             default:
-                // TODO: 필요한 경우 기본 처리 추가
+                Debug.LogWarning("Invalid stage number!");
                 break;
         }
     }
@@ -140,6 +147,13 @@ public class GameManager : MonoSingleton<GameManager>
         Key4.SetActive(false);
 
     }
+    public void LoadCurrentMap()
+    {
+        int savedMap = PlayerPrefs.GetInt("SavedMap", (int)MyEnum.MainMenu); // 저장된 맵 번호 불러오기 (기본값: MainMenu)
+        SetStage(savedMap);
+        Debug.Log("Loaded Map: " + savedMap);
+    }
+
     private void SpawnAllGrid()
     {
         grid1Instance = Instantiate(Grid1, Vector3.zero, Quaternion.identity, transform);
@@ -148,7 +162,7 @@ public class GameManager : MonoSingleton<GameManager>
         grid2Instance.SetActive(false);
     }
 
-    void SpawnAllGimmick()
+    private void SpawnAllGimmick()
     {
         Ground1Gimmick = Instantiate(Gimmick1Prefab, Vector3.zero, Quaternion.identity, transform);
         Ground1Gimmick.SetActive(false);
@@ -160,7 +174,7 @@ public class GameManager : MonoSingleton<GameManager>
         Ladder.SetActive(false);
     }
 
-    void AllSetActiveFalse()
+    private void AllSetActiveFalse()
     {
         grid1Instance.SetActive(false);
         grid2Instance.SetActive(false);

@@ -187,4 +187,5 @@ MonoBehaviour:
   fireBallDir: {x: 1, y: 0}
   hitEff: {fileID: 6116163637368783742, guid: e4c30fb6237724ef6a2fff33f6797a86, type: 3}
   effPos: {fileID: 8097569061962274638}
+  FireParticle: {fileID: 6853629915580995488, guid: dbfc546264090ff4aae50dbc6df6938e, type: 3}
   damageMultiplier: 1
