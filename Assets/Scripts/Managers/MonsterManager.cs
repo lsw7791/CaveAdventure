@@ -22,9 +22,7 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     }
 
     void Start()
-    {
-        //ObjectPool<Monster> selectedPool = goblinPool;
-        //Monster newMonster = GetMonster(new Vector3(2f, -3f, 0), selectedPool);
+    {   
     }
     private void MonsterSet()
     {
@@ -52,16 +50,41 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     
     public void Stage1Monster()
     {
-        ObjectPool<Monster> selectedPool = goblinPool;
-        goblinMonsters[0] = GetMonster(new Vector3(2f, -3.35f, 0), selectedPool);
-        goblinMonsters[1] = GetMonster(new Vector3(12f, -3.35f, 0), selectedPool);
-        goblinMonsters[2] = GetMonster(new Vector3(22f, -3.35f, 0), selectedPool);
-        goblinMonsters[3] = GetMonster(new Vector3(24f, -3.35f, 0), selectedPool);
+        goblinMonsters[0] = GetMonster(new Vector3(2f, -3.35f, 0), goblinPool);
+        goblinMonsters[1] = GetMonster(new Vector3(12f, -3.35f, 0), goblinPool);
+        goblinMonsters[2] = GetMonster(new Vector3(22f, -3.35f, 0), goblinPool);
+        goblinMonsters[3] = GetMonster(new Vector3(24f, -3.35f, 0), goblinPool);
+        StageMonsterReturn();
+    }
+    public void StageMonsterReturn()
+    {
+        for(int i=0;i< goblinMonsters.Length; i++)
+        {
+            if (goblinMonsters[i] != null)
+            {
+                ReturnMonster(goblinMonsters[i], goblinPool);
+            }
+            if (zombieMonsters[i] != null)
+            {
+                ReturnMonster(zombieMonsters[i], zombiePool);
+            }
+            if (demonMonsters[i] != null)
+            {
+                ReturnMonster(demonMonsters[i], demonPool);
+            }
+        }
     }
     public void Stage2Monster()
     {
-        ObjectPool<Monster> selectedPool = goblinPool;
-        goblinMonsters[0] = GetMonster(new Vector3(2f, -3.35f, 0), selectedPool);
+        goblinMonsters[0] = GetMonster(new Vector3(5f, -3.35f, 0), goblinPool); 
+        zombieMonsters[0] = GetMonster(new Vector3(-5f, -2.8f, 0), zombiePool);
+        goblinMonsters[1] = GetMonster(new Vector3(-4f, -3.35f, 0), goblinPool);
+        demonMonsters[0] = GetMonster(new Vector3(25.5f, -2.8f, 0), demonPool);
+
+        zombieMonsters[1] = GetMonster(new Vector3(-5f, 6.2f, 0), zombiePool);
+        goblinMonsters[2] = GetMonster(new Vector3(16f, 3.6f, 0), goblinPool);
+        demonMonsters[1] = GetMonster(new Vector3(17f, 5.1f, 0), demonPool);
+        goblinMonsters[3] = GetMonster(new Vector3(30f, 3.6f, 0), goblinPool);
 
     }
     public Monster GetMonster(Vector3 position, ObjectPool<Monster> monsterPool)
