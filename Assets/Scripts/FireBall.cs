@@ -74,7 +74,7 @@ public class FireBall : MonoBehaviour
                 Instantiate(FireParticle, transform.position, Quaternion.identity);
                 FireParticle.Play();
             }
-        }       
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
