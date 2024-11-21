@@ -11,7 +11,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public ParticleSystem ParticleEffects;
     public int CurrentMap;
-
+    public int KeyNum;
     [SerializeField] GameObject Grid1;
     [SerializeField] GameObject Grid2;
     [SerializeField] GameObject Gimmick1Prefab;
@@ -31,8 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Ground1Gimmick;
     GameObject Ground2Gimmick;
     GameObject Fall1Gimmick;
-
-    GameObject Ladder;
+    public GameObject Ladder;
     GameObject player;
     GameObject Key1;
     GameObject Key2;
@@ -65,7 +64,9 @@ public class GameManager : MonoSingleton<GameManager>
         player.SetActive(false);
         SpawnAllGrid();
         SpawnAllGimmick();
+        SpawnKey();
         SetStage(CurrentMap); // 저장된 맵 상태로 복원
+        KeyNum = 0;
     }
 
     public void SetStage(int stageNum)
@@ -104,9 +105,16 @@ public class GameManager : MonoSingleton<GameManager>
                 Ground1Gimmick.transform.position = new Vector2(-7f, -4.4f);
                 Ground2Gimmick.SetActive(true);
                 Ground2Gimmick.transform.position = new Vector2(8f, -4.4f);
-                MonsterManager.Instance.Stage2Monster();
-                Ladder.SetActive(true);
-                Ladder.transform.position = new Vector2(4.5f, 0f);
+                MonsterManager.Instance.Stage2Monster();              
+                Key1.SetActive(true);
+                Key1.transform.position = new Vector2(28f, -2f);
+                Key2.SetActive(true);
+                Key2.transform.position = new Vector2(-12f, -2f);
+                Key3.SetActive(true);
+                Key3.transform.position = new Vector2(-9f,7f);
+                Key4.SetActive(true);
+                Key4.transform.position = new Vector2(24f, 6f);
+
                 break;
             default:
                 // TODO: 필요한 경우 기본 처리 추가
@@ -122,14 +130,14 @@ public class GameManager : MonoSingleton<GameManager>
     }
     void SpawnKey()
     {
-        Key1Prefab = Instantiate(Key1, Vector3.zero, Quaternion.identity, transform);
-        Key1Prefab.SetActive(false);
-        Key2Prefab = Instantiate(Key2, Vector3.zero, Quaternion.identity, transform);
-        Key2Prefab.SetActive(false);
-        Key3Prefab = Instantiate(Key3, Vector3.zero, Quaternion.identity, transform);
-        Key3Prefab.SetActive(false);
-        Key4Prefab = Instantiate(Key4, Vector3.zero, Quaternion.identity, transform);
-        Key4Prefab.SetActive(false);
+        Key1 = Instantiate(Key1Prefab, Vector3.zero, Quaternion.identity, transform);
+        Key1.SetActive(false);
+        Key2 = Instantiate(Key2Prefab, Vector3.zero, Quaternion.identity, transform);
+        Key2.SetActive(false);
+        Key3 = Instantiate(Key3Prefab, Vector3.zero, Quaternion.identity, transform);
+        Key3.SetActive(false);
+        Key4 = Instantiate(Key4Prefab, Vector3.zero, Quaternion.identity, transform);
+        Key4.SetActive(false);
 
     }
     private void SpawnAllGrid()
