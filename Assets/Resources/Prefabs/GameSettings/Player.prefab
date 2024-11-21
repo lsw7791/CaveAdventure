@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2463543304523273249}
+  collisionCooldown: 1
+  uiHeart: {fileID: 6438408362691008699, guid: 0cf3b16c858899640812c0b362c8361f, type: 3}
   moveSpeed: 5
   animator: {fileID: 2698155631069244699}
   jumpForce: 5.5
