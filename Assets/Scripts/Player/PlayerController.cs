@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
-
+    [SerializeField] private GameObject Player;
     [Header("Movement")]
     public float moveSpeed;
     private Vector2 curMovementInput;
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Player = Resources.Load<GameObject>("Prefabs/GameSettings/Player");
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
