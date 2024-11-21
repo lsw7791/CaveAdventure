@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour
     //여기부턴 사다리 타기 부분
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Collided with: {other.gameObject.name}"); // 충돌 오브젝트 이름 확인
 
         // 몬스터 또는 기믹에 충돌했을 때
         if (other.gameObject.CompareTag("Monster") || other.gameObject.CompareTag("Gimmick"))
@@ -143,7 +142,6 @@ public class PlayerController : MonoBehaviour
         // 포탈 처리
         if (other.gameObject.CompareTag("Portal"))
         {
-            Debug.Log("Portal Triggered");
             StartPortalAnimation();
         }
     }

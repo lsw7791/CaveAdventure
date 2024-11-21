@@ -9,13 +9,14 @@ public class Key : MonoBehaviour
         {
             gameObject.SetActive(false);
             GameManager.Instance.KeyNum += 1;
+            Debug.Log(GameManager.Instance.KeyNum);
         }
-        if (GameManager.Instance.KeyNum <=2)
+        if (GameManager.Instance.KeyNum >=2)
         {
             GameManager.Instance.Ladder.SetActive(true);
             GameManager.Instance.Ladder.transform.position = new Vector2(4.5f, 0f);
         }
-        if (GameManager.Instance.KeyNum <= 4)
+        if (GameManager.Instance.KeyNum >= 4)
         {
             //TODO : 끝나는 포탈 열기
         }

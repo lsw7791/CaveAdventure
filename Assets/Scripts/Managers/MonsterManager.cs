@@ -104,6 +104,5 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     public void ReturnMonster(Monster monster, ObjectPool<Monster> monsterPool)
     {
         monsterPool.ReturnObject(monster);  // ���� Ǯ�� ��ȯ
-        Debug.Log("Monster returned to pool.");
     }
 }

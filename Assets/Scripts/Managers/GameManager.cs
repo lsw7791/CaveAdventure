@@ -55,7 +55,7 @@ public class GameManager : MonoSingleton<GameManager>
         Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
 
         // 초기화
-        player = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity, transform);
+        player = Instantiate(PlayerPrefab, new Vector2(10f,10f), Quaternion.identity, transform);
         player.SetActive(false);
         SpawnAllGrid();
         SpawnAllGimmick();
@@ -71,7 +71,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         AllSetActiveFalse();
         CurrentMap = stageNum; // 현재 맵 번호 업데이트
-
+        KeyNum = 0;
         switch (stageNum)
         {
             case 0:
@@ -142,7 +142,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         int savedMap = PlayerPrefs.GetInt("SavedMap", (int)MyEnum.MainMenu); // 저장된 맵 번호 불러오기 (기본값: MainMenu)
         SetStage(savedMap);
-        Debug.Log("Loaded Map: " + savedMap);
     }
 
     private void SpawnAllGrid()
