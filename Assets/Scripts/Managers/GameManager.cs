@@ -81,13 +81,13 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             case 2:
                 player.SetActive(true);
-                player.transform.position = new Vector2(0, 0);
+                player.transform.position = new Vector2(17f, 0f);
                 grid1Instance.SetActive(false);
                 Ground1Gimmick.SetActive(false);
                 Fall1Gimmick.SetActive(false);
                 grid2Instance.SetActive(true);
                 Ground1Gimmick.SetActive(true);
-                Ground1Gimmick.transform.position = new Vector2(16f, 4.7f);
+                Ground1Gimmick.transform.position = new Vector2(-7f, -4.4f);
                 Ground2Gimmick.SetActive(true);
                 Ground2Gimmick.transform.position = new Vector2(8f, -4.4f);
                 MonsterManager.Instance.Stage2Monster();
