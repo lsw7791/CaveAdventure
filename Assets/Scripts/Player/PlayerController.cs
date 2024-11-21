@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public float collisionCooldown = 1.0f; // 충돌 쿨타임 (초 단위)
     private float lastCollisionTime = -Mathf.Infinity; // 마지막 충돌 시간 기록
-    [SerializeField] private UIHeart uiHeart;
+    public UIHeart uiHeart;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -32,12 +32,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Player = Resources.Load<GameObject>("Prefabs/GameSettings/Player");
-        uiHeart = Resources.Load<UIHeart>("Prefabs/dsadasdasd");
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        uiHeart = FindObjectOfType<UIHeart>();
-
+        
     }
 
     private void Update()
