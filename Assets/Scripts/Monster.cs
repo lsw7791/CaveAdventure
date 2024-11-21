@@ -34,10 +34,12 @@ public class Monster : MonoBehaviour
         Move();
         MonsterDrop();
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        moveDir *= new Vector2(-1, 0);
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // �浹 �� �̵� ������ �ݴ�� �ٲ�
         moveDir *= new Vector2(-1, 0);
     }
 
@@ -73,7 +75,6 @@ public class Monster : MonoBehaviour
             health = monsterData.maxHealth;
             gameObject.SetActive(false);  // ��Ȱ��ȭ
             monsterPool.ReturnObject(this);  // Ǯ�� ��ȯ
-            Debug.Log("Monster returned to pool.");
         }
     }
 
