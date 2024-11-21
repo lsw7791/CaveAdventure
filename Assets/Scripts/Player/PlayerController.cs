@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
     //여기부턴 사다리 타기 부분
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"Collided with: {other.gameObject.name}"); // 충돌 오브젝트 이름 확인
+
         if (other.gameObject.layer == 8)
         {
             this.gameObject.tag = "InLadder";
@@ -125,7 +127,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Portal")) // Portal 태그 확인
         {
-                StartPortalAnimation();
+            Debug.Log("Portal Triggered");
+
+            StartPortalAnimation();
         }
     }
     void Ladder(float k)
