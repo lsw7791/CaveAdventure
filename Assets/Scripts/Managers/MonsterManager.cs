@@ -56,7 +56,7 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         goblinMonsters[3] = GetMonster(new Vector3(24f, -3.35f, 0), goblinPool);
         StageMonsterReturn();
     }
-    void StageMonsterReturn()
+    public void StageMonsterReturn()
     {
         for(int i=0;i< goblinMonsters.Length; i++)
         {
