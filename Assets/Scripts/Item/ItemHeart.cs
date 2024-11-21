@@ -13,6 +13,6 @@ public class ItemHeart : MonoBehaviour, ICollectible
     public void Collect()
     {
         // 하트를 증가시키고 UI 갱신
-        uiHeart.Collect();
+        GameManager.Instance.Collect();
     }
 }

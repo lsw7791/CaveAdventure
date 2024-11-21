@@ -12,6 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
     public ParticleSystem ParticleEffects;
     public int CurrentMap;
     public int KeyNum;
+    public int playerLife;
     [SerializeField] GameObject Grid1;
     [SerializeField] GameObject Grid2;
     [SerializeField] GameObject Grid3;
@@ -39,9 +40,8 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Key2;
     GameObject Key3;
     GameObject Key4;
-
     public UIHeart uiHeart;
-    [SerializeField] private GameObject uiGameOver;
+    public UIGameOver uiGameOver;
 
     protected override void Awake()
     {
@@ -61,7 +61,7 @@ public class GameManager : MonoSingleton<GameManager>
         Key2Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key2");
         Key3Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key3");
         Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
-        uiGameOver = Resources.Load<GameObject>("Prefabs/GameSettings/UIGameOver");
+        
 
         // 초기화
         player = Instantiate(PlayerPrefab, new Vector2(10f,10f), Quaternion.identity, transform);
@@ -75,7 +75,10 @@ public class GameManager : MonoSingleton<GameManager>
         // 저장된 맵 번호를 불러와 스테이지 설정
         LoadCurrentMap();
     }
-
+    private void Start()
+    {
+        playerLife = 1;      
+    }
     public void SetStage(int stageNum)
     {
         AllSetActiveFalse();
@@ -128,7 +131,13 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
         }
     }
-
+    private void Update()
+    {
+        if(player.transform.position.y <= -50)
+        {
+            GameOver();
+        }
+    }
     public void SaveCurrentMap()
     {
         PlayerPrefs.SetInt("SavedMap", CurrentMap); // 현재 맵 번호 저장
@@ -202,7 +211,42 @@ public class GameManager : MonoSingleton<GameManager>
       
         Time.timeScale = 0;
         // 게임 오버 UI 활성화
-        uiGameOver.SetActive(true);
+        uiGameOver.GameOverOn();
+        playerLife = 1;
+        GameSave();
+    }
 
+    public void UpdateUI()
+    {
+        if (uiHeart.heartText != null)
+        {
+            uiHeart.heartText.text = playerLife.ToString();
+        }
+        else
+        {
+            Debug.LogError("Text 컴포넌트가 할당되지 않았습니다.");
+        }
+    }
+    public void GameSave()
+    {
+        PlayerPrefs.SetInt("HeartCount", playerLife);  // 새로운 하트 수 저장
+        PlayerPrefs.Save();  // 변경 사항 저장
+    }
+    public void Collect()
+    {
+        // 하트를 증가시키고 UI를 갱신합니다.
+        GameManager.Instance.playerLife += 1;
+        UpdateUI();
+    }
+
+    public void Loss()
+    {
+        GameManager.Instance.playerLife -= 1;  // 하트 감소
+
+        if (GameManager.Instance.playerLife <= 0)
+        {
+            GameManager.Instance.GameOver();
+        }
+        UpdateUI();
     }
 }

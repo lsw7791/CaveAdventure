@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
 
     public float collisionCooldown = 1.0f; // 충돌 쿨타임 (초 단위)
     private float lastCollisionTime = -Mathf.Infinity; // 마지막 충돌 시간 기록
-    public UIHeart uiHeart;
-
     [Header("Movement")]
     public float moveSpeed;
     private Vector2 curMovementInput;
@@ -35,7 +33,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
     }
 
     private void Update()
@@ -128,11 +125,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.time - lastCollisionTime >= collisionCooldown)
             {
-                uiHeart.Loss();
-            }
-            if(uiHeart.CurrentLives <= 0)
-            {
-                GameManager.Instance.GameOver();
+                GameManager.Instance.Loss();
             }
         }
 
