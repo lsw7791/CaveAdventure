@@ -130,6 +130,10 @@ public class PlayerController : MonoBehaviour
             {
                 uiHeart.Loss();
             }
+            if(uiHeart.CurrentLives <= 0)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
 
         // 사다리 진입 처리

@@ -36,6 +36,8 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Key3;
     GameObject Key4;
 
+    public UIHeart uiHeart;
+    [SerializeField] private GameObject uiGameOver;
 
     protected override void Awake()
     {
@@ -53,6 +55,7 @@ public class GameManager : MonoSingleton<GameManager>
         Key2Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key2");
         Key3Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key3");
         Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
+        uiGameOver = Resources.Load<GameObject>("Prefabs/GameSettings/UIGameOver");
 
         // 초기화
         player = Instantiate(PlayerPrefab, new Vector2(10f,10f), Quaternion.identity, transform);
@@ -70,6 +73,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetStage(int stageNum)
     {
         AllSetActiveFalse();
+        Time.timeScale = 1;
         CurrentMap = stageNum; // 현재 맵 번호 업데이트
         KeyNum = 0;
         switch (stageNum)
@@ -177,6 +181,19 @@ public class GameManager : MonoSingleton<GameManager>
         Key2.SetActive(false);
         Key3.SetActive(false);
         Key4.SetActive(false);
+
         MonsterManager.Instance.StageMonsterReturn();
+    }
+
+   
+
+    public void GameOver()
+    {
+        // 게임 시간 멈추기
+      
+        Time.timeScale = 0;
+        // 게임 오버 UI 활성화
+        uiGameOver.SetActive(true);
+
     }
 }

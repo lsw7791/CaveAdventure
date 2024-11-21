@@ -2061,6 +2061,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7619526079942769903, guid: 308bcd7858631794f924338cb2155285, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619526079942769903, guid: 308bcd7858631794f924338cb2155285, type: 3}
       propertyPath: LadderPrefab
       value: 
       objectReference: {fileID: 8239678115015206561, guid: 107344ebd2a6ca9419ec366b5a9f6c79, type: 3}
