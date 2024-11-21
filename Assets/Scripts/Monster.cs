@@ -8,8 +8,8 @@ public class Monster : MonoBehaviour
     public int health;
     Vector2 moveDir;
     private Rigidbody2D rb;
-    private Animator animator;
     private ObjectPool<Monster> monsterPool;  // ���͸� ��ȯ�� Ǯ ����
+    public UIHeart uiHeart;
 
     // MonsterManager���� �ش� Ǯ�� ������ �� �ֵ��� �߰��ϴ� ������ �Ǵ� �޼���
     public void Initialize(ObjectPool<Monster> pool)
@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     {
         // Rigidbody2D ������Ʈ ��������
         rb = GetComponent<Rigidbody2D>();
+
+        uiHeart = GetComponent<UIHeart>();
 
         // �̵� ���� ���� (����)
         moveDir = new Vector2(Random.Range(0, 2) == 0 ? -1 : 1, 0);
@@ -34,10 +36,17 @@ public class Monster : MonoBehaviour
         Move();
         MonsterDrop();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         moveDir *= new Vector2(-1, 0);
+
+        if (other.CompareTag("Player"))
+        {
+            uiHeart.Loss();
+        }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         moveDir *= new Vector2(-1, 0);

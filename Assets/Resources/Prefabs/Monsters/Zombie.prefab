@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5710378046808111418}
   - component: {fileID: 6740003985102053371}
   - component: {fileID: 5728061153306522325}
+  - component: {fileID: -6619088968030938282}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Monster
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 94e7c04b194668c4eb9cc8355b0ba125, type: 2}
   health: 0
+  uiHeart: {fileID: 0}
 --- !u!50 &5728061153306522325
 Rigidbody2D:
   serializedVersion: 4
@@ -195,3 +197,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &-6619088968030938282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598559208595633841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9436c1219617429f93c63f4dd43ab15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeIncrement: 1

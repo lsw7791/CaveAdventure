@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class GimmickFall : MonoBehaviour
 {
-         private Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private UIHeart uiheart;
+
     void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        uiheart = GetComponent<UIHeart>();
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //TODO : 피만 까이게
+            uiheart.Loss();
         }
+
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         gameObject.SetActive(false);
     }
