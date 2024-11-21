@@ -172,6 +172,11 @@ public class GameManager : MonoSingleton<GameManager>
         Ground2Gimmick.SetActive(false);
         Fall1Gimmick.SetActive(false);
         Ladder.SetActive(false);
+        player.SetActive(false);
+        Key1.SetActive(false);
+        Key2.SetActive(false);
+        Key3.SetActive(false);
+        Key4.SetActive(false);
         MonsterManager.Instance.StageMonsterReturn();
     }
 }
