@@ -15,11 +15,6 @@ public class GimmickFall : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            uiheart.Loss();
-        }
-
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         gameObject.SetActive(false);
     }

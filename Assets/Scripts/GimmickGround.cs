@@ -26,16 +26,6 @@ public class GimmickGround : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // "Player" 태그가 붙은 오브젝트와 충돌할 때
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 기믹의 콜라이더를 트리거로 활성화
-            coll.isTrigger = true;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

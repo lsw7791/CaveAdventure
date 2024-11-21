@@ -9,7 +9,6 @@ public class Monster : MonoBehaviour
     Vector2 moveDir;
     private Rigidbody2D rb;
     private ObjectPool<Monster> monsterPool;  // ���͸� ��ȯ�� Ǯ ����
-    public UIHeart uiHeart;
 
     public ParticleSystem hit;
 
@@ -23,8 +22,6 @@ public class Monster : MonoBehaviour
     {
         // Rigidbody2D ������Ʈ ��������
         rb = GetComponent<Rigidbody2D>();
-
-        uiHeart = GetComponent<UIHeart>();
 
         // �̵� ���� ���� (����)
         moveDir = new Vector2(Random.Range(0, 2) == 0 ? -1 : 1, 0);

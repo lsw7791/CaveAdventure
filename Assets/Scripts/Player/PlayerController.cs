@@ -4,7 +4,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
+    [SerializeField] private GameObject Player;
+
+    public float collisionCooldown = 1.0f; // 충돌 쿨타임 (초 단위)
+    private float lastCollisionTime = -Mathf.Infinity; // 마지막 충돌 시간 기록
+    public UIHeart uiHeart;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -27,10 +31,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Player = Resources.Load<GameObject>("Prefabs/GameSettings/Player");
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
     }
 
     private void Update()
@@ -115,23 +120,34 @@ public class PlayerController : MonoBehaviour
     }
 
     //여기부턴 사다리 타기 부분
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log($"Collided with: {other.gameObject.name}"); // 충돌 오브젝트 이름 확인
 
+        // 몬스터 또는 기믹에 충돌했을 때
+        if (other.gameObject.CompareTag("Monster") || other.gameObject.CompareTag("Gimmick"))
+        {
+            if (Time.time - lastCollisionTime >= collisionCooldown)
+            {
+                uiHeart.Loss();
+            }
+        }
+
+        // 사다리 진입 처리
         if (other.gameObject.layer == 8)
         {
             this.gameObject.tag = "InLadder";
-            animator.SetBool("isLadderIdle", true);
+            GetComponent<Animator>().SetBool("isLadderIdle", true);
         }
 
-        if (other.gameObject.CompareTag("Portal")) // Portal 태그 확인
+        // 포탈 처리
+        if (other.gameObject.CompareTag("Portal"))
         {
             Debug.Log("Portal Triggered");
-
             StartPortalAnimation();
         }
     }
+
     void Ladder(float k)
     {
         
