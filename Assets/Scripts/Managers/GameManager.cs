@@ -41,8 +41,13 @@ public class GameManager : MonoSingleton<GameManager>
         switch (stageNum)
         {
             case 0:
-                // TODO : ������ ��� ������Ʈ�� Ǯ�� ��ȯ
-                break;
+                grid1Instance.SetActive(true);
+                Ground1Gimmick.SetActive(true);
+                Ground1Gimmick.transform.position = new Vector2(10f, -4.3f);
+                Fall1Gimmick.SetActive(true);
+                Fall1Gimmick.transform.position = new Vector2(10f, 4f);
+
+                MonsterManager.Instance.Stage1Monster(); break;
             case 1:
                 grid1Instance.SetActive(true);
                 Ground1Gimmick.SetActive(true);

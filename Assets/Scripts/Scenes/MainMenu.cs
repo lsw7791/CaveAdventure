@@ -1,30 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;  // ¾À °ü¸® Å¬·¡½º
+using UnityEngine.SceneManagement;  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
 public class MainMenu : MonoBehaviour
 {
-    // NEW GAME ¹öÆ° Å¬¸¯ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // NEW GAME ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public void NewGame()
     {
-        // "GameScene"À» »õ·Î¿î °ÔÀÓ ¾ÀÀ¸·Î ÁöÁ¤ÇÏ°í ·Îµå
-        SceneManager.LoadScene("MainScene");  // "GameScene"Àº ½ÇÁ¦ °ÔÀÓ ¾À ÀÌ¸§À¸·Î º¯°æ
+        // "GameScene"ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Îµï¿½
+        SceneManager.LoadScene("MainScene");  // "GameScene"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         GameManager.Instance.CurrentMap = 1;
         GameManager.Instance.SetStage(GameManager.Instance.CurrentMap);
     }
 
-    // LOAD GAME ¹öÆ° Å¬¸¯ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // LOAD GAME ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public void LoadGame()
     {
         SceneManager.LoadScene("MainScene");
-        GameManager.Instance.CurrentMap = 2;
         GameManager.Instance.SetStage(GameManager.Instance.CurrentMap);
     }
 
-    // EXIT ¹öÆ° Å¬¸¯ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // EXIT ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public void ExitGame()
     {
-        // °ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.
-        Debug.Log("°ÔÀÓ Á¾·á");
-        Application.Quit(); //½ÇÁ¦ °ÔÀÓ ºôµå¿¡¼­´Â µ¿ÀÛÇÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        Application.Quit(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }
