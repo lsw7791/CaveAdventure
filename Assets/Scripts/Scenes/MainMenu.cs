@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     {
         // "GameScene"�� ���ο� ���� ������ �����ϰ� �ε�
         SceneManager.LoadScene("MainScene");  // "GameScene"�� ���� ���� �� �̸����� ����
-        GameManager.Instance.CurrentMap = 1;
+        GameManager.Instance.CurrentMap = 3;
         GameManager.Instance.SetStage(GameManager.Instance.CurrentMap);
     }
 

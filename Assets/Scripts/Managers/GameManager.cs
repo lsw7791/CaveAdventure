@@ -14,6 +14,8 @@ public class GameManager : MonoSingleton<GameManager>
     public int KeyNum;
     [SerializeField] GameObject Grid1;
     [SerializeField] GameObject Grid2;
+    [SerializeField] GameObject Grid3;
+
     [SerializeField] GameObject Gimmick1Prefab;
     [SerializeField] GameObject Gimmick2Prefab;
     [SerializeField] GameObject Gimmick3Prefab;
@@ -26,6 +28,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     GameObject grid1Instance;
     GameObject grid2Instance;
+    GameObject grid3Instance;
+
     GameObject Ground1Gimmick;
     GameObject Ground2Gimmick;
     GameObject Fall1Gimmick;
@@ -44,6 +48,8 @@ public class GameManager : MonoSingleton<GameManager>
         // Resource에서 필요한 오브젝트 로드
         Grid1 = Resources.Load<GameObject>("Grids/GridLake");
         Grid2 = Resources.Load<GameObject>("Grids/GridMine");
+        Grid3 = Resources.Load<GameObject>("Grids/GridNatrue");
+
         Gimmick1Prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/GimmickGround1");
         Gimmick2Prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/GimmickGround2");
         Gimmick3Prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/GimmickFall1");
@@ -75,17 +81,12 @@ public class GameManager : MonoSingleton<GameManager>
         switch (stageNum)
         {
             case 0:
-                grid1Instance.SetActive(true);
-                Ground1Gimmick.SetActive(true);
-                Ground1Gimmick.transform.position = new Vector2(10f, -4.3f);
-                Fall1Gimmick.SetActive(true);
-                Fall1Gimmick.transform.position = new Vector2(10f, 4f);
-                MonsterManager.Instance.Stage1Monster();
+                AllSetActiveFalse();
                 break;
             case 1:
+                grid1Instance.SetActive(true);
                 player.SetActive(true);
                 player.transform.position = new Vector2(0, 0);
-                grid1Instance.SetActive(true);
                 Ground1Gimmick.SetActive(true);
                 Ground1Gimmick.transform.position = new Vector2(10f, -4.3f);
                 Fall1Gimmick.SetActive(true);
@@ -93,12 +94,12 @@ public class GameManager : MonoSingleton<GameManager>
                 MonsterManager.Instance.Stage1Monster();
                 break;
             case 2:
+                grid2Instance.SetActive(true);
                 player.SetActive(true);
                 player.transform.position = new Vector2(17f, 0f);
                 grid1Instance.SetActive(false);
                 Ground1Gimmick.SetActive(false);
                 Fall1Gimmick.SetActive(false);
-                grid2Instance.SetActive(true);
                 Ground1Gimmick.SetActive(true);
                 Ground1Gimmick.transform.position = new Vector2(-7f, -4.4f);
                 Ground2Gimmick.SetActive(true);
@@ -112,7 +113,11 @@ public class GameManager : MonoSingleton<GameManager>
                 Key3.transform.position = new Vector2(-9f,7f);
                 Key4.SetActive(true);
                 Key4.transform.position = new Vector2(24f, 6f);
-
+                break;
+            case 3:
+                grid3Instance.SetActive(true);
+                player.SetActive(true);
+                player.transform.position = new Vector2(-25f, 0f);
                 break;
             default:
                 Debug.LogWarning("Invalid stage number!");
@@ -150,6 +155,8 @@ public class GameManager : MonoSingleton<GameManager>
         grid1Instance.SetActive(false);
         grid2Instance = Instantiate(Grid2, Vector3.zero, Quaternion.identity, transform);
         grid2Instance.SetActive(false);
+        grid3Instance = Instantiate(Grid3, Vector3.zero, Quaternion.identity, transform);
+        grid3Instance.SetActive(false);
     }
 
     private void SpawnAllGimmick()
@@ -168,6 +175,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         grid1Instance.SetActive(false);
         grid2Instance.SetActive(false);
+        grid3Instance.SetActive(false);
+
         Ground1Gimmick.SetActive(false);
         Ground2Gimmick.SetActive(false);
         Fall1Gimmick.SetActive(false);
