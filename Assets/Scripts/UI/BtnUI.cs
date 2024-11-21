@@ -37,6 +37,7 @@ public class BtnUI : MonoBehaviour
     public void OnClickSaveBtn()
     {
         StartCoroutine(ShowSavePanel());
+        GameManager.Instance.SaveCurrentMap();
     }
 
     public void OnClickExitBtn()
