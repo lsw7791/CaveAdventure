@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UIHeart : MonoBehaviour
 {
     public int lifeIncrement = 1;  // 하트 증가량
-    public int currentLives = 1;  // 현재 하트 수
+    private int currentLives = 1;  // 현재 하트 수
 
     public int CurrentLives
     {
@@ -32,14 +32,16 @@ public class UIHeart : MonoBehaviour
 
     public void Loss()
     {
-        --currentLives;
+        CurrentLives -= lifeIncrement ;  // 하트 감소
         PlayerPrefs.SetInt("HeartCount", CurrentLives);  // 새로운 하트 수 저장
         PlayerPrefs.Save();  // 변경 사항 저장
+        
     }
 
     private void UpdateUI()
     {
         // UI 갱신
+        
         Text heartText = GetComponentInChildren<Text>();
         if (heartText != null)
         {
