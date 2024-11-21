@@ -13,7 +13,7 @@ public class MainCamera : MonoBehaviour
     {
         // 플레이어 태그가 붙은 오브젝트를 찾아서 플레이어 변수에 할당
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        offset = new Vector3(0, -0, -10);  // X, Y, Z 값 조정 가능
+        offset = new Vector3(0, 0, -10);  // X, Y, Z 값 조정 가능
     }
 
     // Update is called once per frame

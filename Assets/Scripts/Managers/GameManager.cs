@@ -10,9 +10,9 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     public ParticleSystem ParticleEffects;
-    public int CurrentMap;
-    public int KeyNum;
-    public int playerLife;
+    public int CurrentMap { get; private set; }
+    public int KeyNum { get; private set; }
+    public int playerLife { get; private set; }
     [SerializeField] GameObject Grid1;
     [SerializeField] GameObject Grid2;
     [SerializeField] GameObject Grid3;
@@ -42,11 +42,9 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Key4;
     public UIHeart uiHeart;
     public UIGameOver uiGameOver;
-
     protected override void Awake()
     {
         base.Awake();
-
         // Resource에서 필요한 오브젝트 로드
         Grid1 = Resources.Load<GameObject>("Grids/GridLake");
         Grid2 = Resources.Load<GameObject>("Grids/GridMine");
@@ -79,6 +77,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         playerLife = 1;      
     }
+
     public void SetStage(int stageNum)
     {
         PlayerPrefs.GetInt("HeartCount", 1);
@@ -172,7 +171,7 @@ public class GameManager : MonoSingleton<GameManager>
         grid3Instance = Instantiate(Grid3, Vector3.zero, Quaternion.identity, transform);
         grid3Instance.SetActive(false);
     }
-
+    
     private void SpawnAllGimmick()
     {
         Ground1Gimmick = Instantiate(Gimmick1Prefab, Vector3.zero, Quaternion.identity, transform);
@@ -249,5 +248,9 @@ public class GameManager : MonoSingleton<GameManager>
             GameOver();
         }
         UpdateUI();
+    }
+    public void AddKeyNum(int num)
+    {
+        KeyNum += num;
     }
 }

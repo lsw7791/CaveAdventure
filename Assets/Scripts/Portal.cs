@@ -9,7 +9,7 @@ public class Portal : MonoBehaviour
         // 플레이어가 포탈에 접촉했을 때
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.CurrentMap++;
+            GameManager.Instance.AddKeyNum(1);
             GameManager.Instance.SetStage(GameManager.Instance.CurrentMap);
             Destroy(transform.parent.gameObject);
         }

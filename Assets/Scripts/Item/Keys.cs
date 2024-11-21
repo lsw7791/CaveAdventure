@@ -8,7 +8,7 @@ public class Key : MonoBehaviour
         if (collision.CompareTag("Player")) // 플레이어와 충돌 확인
         {
             gameObject.SetActive(false);
-            GameManager.Instance.KeyNum += 1;
+            GameManager.Instance.AddKeyNum(1);
             Debug.Log(GameManager.Instance.KeyNum);
         }
         if (GameManager.Instance.KeyNum >=2)
