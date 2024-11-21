@@ -59,8 +59,7 @@ public class FireBall : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // 몬스터와 충돌 처리
         if (collision.gameObject.CompareTag("Monster"))
@@ -72,8 +71,10 @@ public class FireBall : MonoBehaviour
                 monster.TakeDamage((int)finalDamage); // 데미지 적용
                 ReturnToPool(); // FireBall을 풀로 반환
             }
-        }
-
+        }       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         // 지형과 충돌 처리
         if (collision.gameObject.CompareTag("Groundlayer"))
         {
