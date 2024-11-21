@@ -6,7 +6,7 @@
             "id": "b5f2b69e-1930-407f-ae00-a4d47e1cc550",
             "actions": [
                 {
-                    "name": "WASD",
+                    "name": "OnMove",
                     "type": "Value",
                     "id": "b5527f09-0e60-4596-b553-89a1be511c1a",
                     "expectedControlType": "Vector2",
@@ -110,7 +110,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "OnMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -121,7 +121,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "OnMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -132,7 +132,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "OnMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -143,7 +143,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "OnMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -154,7 +154,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "OnMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },

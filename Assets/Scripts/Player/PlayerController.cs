@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        // 현재 입력된 방향 벡터에 따라 이동
+        Vector3 movement = new Vector3(curMovementInput.x, curMovementInput.y, 0f) * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
         UpdateAnimation();
         CheckGroundStatus();
 
@@ -49,15 +51,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isfalling", true);
             }
         }
-    }
-
-    void Move()
-    {
-        Vector2 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
-        //dir.y = _rigidbody.velocity.y;
-
-        _rigidbody.velocity = new Vector2(dir.x, _rigidbody.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)

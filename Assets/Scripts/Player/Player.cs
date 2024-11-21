@@ -2,20 +2,15 @@ using UnityEngine;
 
 public class Player : MonoSingleton<Player>
 {
-    //[SerializeField] private FireBall fireBallPrefab;
     [SerializeField] private Transform skillPivot;
-    //private ObjectPool<FireBall> fireBallPool;
     private SpriteRenderer spriteRenderer; // SpriteRenderer 참조
     protected override void Awake()
     {
         base.Awake();
-        //fireBallPrefab = Resources.Load<FireBall>("Prefabs/Skills/FireBall");
         skillPivot = GetComponent<Transform>();
     }
     private void Start()
     {
-        //fireBallPool = new ObjectPool<FireBall>();
-        //fireBallPool.Initialize(fireBallPrefab, 10, transform);
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 가져오기
     }
 
