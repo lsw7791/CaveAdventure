@@ -24,15 +24,6 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] GameObject Key3Prefab;
     [SerializeField] GameObject Key4Prefab;
 
-    private GameObject grid1Instance;
-    private GameObject grid2Instance;
-    private GameObject Ground1Gimmick;
-    private GameObject Ground2Gimmick;
-    private GameObject Fall1Gimmick;
-    private GameObject Ladder;
-    private GameObject player;
-
-
     GameObject grid1Instance;
     GameObject grid2Instance;
     GameObject Ground1Gimmick;
