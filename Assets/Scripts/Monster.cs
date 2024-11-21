@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour
     private ObjectPool<Monster> monsterPool;  // ���͸� ��ȯ�� Ǯ ����
     public UIHeart uiHeart;
 
+    public ParticleSystem hit;
+
     // MonsterManager���� �ش� Ǯ�� ������ �� �ֵ��� �߰��ϴ� ������ �Ǵ� �޼���
     public void Initialize(ObjectPool<Monster> pool)
     {
@@ -44,6 +46,9 @@ public class Monster : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             uiHeart.Loss();
+
+            Instantiate(hit, transform.position, Quaternion.identity);
+            hit.Play();
         }
     }
 

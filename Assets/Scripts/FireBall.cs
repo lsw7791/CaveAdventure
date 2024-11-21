@@ -8,6 +8,7 @@ public class FireBall : MonoBehaviour
     public GameObject hitEff;
     public Transform effPos;
     private ObjectPool<FireBall> pool;           // 오브젝트 풀 참조
+    public ParticleSystem FireParticle;             //파티클
 
     public float damageMultiplier = 1f;         // 데미지 배율 (기본 1배)
 
@@ -70,6 +71,8 @@ public class FireBall : MonoBehaviour
                 float finalDamage = fireBallData.skillDamage * damageMultiplier;
                 monster.TakeDamage((int)finalDamage); // 데미지 적용
                 ReturnToPool(); // FireBall을 풀로 반환
+                Instantiate(FireParticle, transform.position, Quaternion.identity);
+                FireParticle.Play();
             }
         }       
     }

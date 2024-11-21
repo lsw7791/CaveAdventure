@@ -110,6 +110,7 @@ MonoBehaviour:
   - {fileID: 1282244169400180234}
   - {fileID: 8280128515443623665}
   effectDuration: 0.3
+  BoxParticle: {fileID: 1501912021735578951, guid: 1faa6f2ff1d733f40bf8fe601cad1f0c, type: 3}
 --- !u!50 &1355666639540565847
 Rigidbody2D:
   serializedVersion: 4

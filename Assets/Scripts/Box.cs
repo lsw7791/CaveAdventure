@@ -12,6 +12,8 @@ public class Box : MonoBehaviour
 
     private bool isOpened = false;  // 상자가 열렸는지 체크하는 변수
 
+    public ParticleSystem BoxParticle;     //파티클
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -42,6 +44,10 @@ public class Box : MonoBehaviour
         StartCoroutine(DeactivateEffectsAfterDelay(effectDuration));
 
         portal.SetActive(true);
+
+        // 파티클 활성화
+        Instantiate(BoxParticle, transform.position, Quaternion.identity);
+        BoxParticle.Play();
     }
 
     // 상자 이미지 변경
