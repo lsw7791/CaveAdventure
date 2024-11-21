@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
+    [SerializeField] private GameObject Player;
+
     public float collisionCooldown = 1.0f; // 충돌 쿨타임 (초 단위)
     private float lastCollisionTime = -Mathf.Infinity; // 마지막 충돌 시간 기록
     private UIHeart uiHeart;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Player = Resources.Load<GameObject>("Prefabs/GameSettings/Player");
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
