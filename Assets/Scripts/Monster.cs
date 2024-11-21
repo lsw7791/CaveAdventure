@@ -42,7 +42,6 @@ public class Monster : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            uiHeart.Loss();
 
             Instantiate(hit, transform.position, Quaternion.identity);
             hit.Play();
