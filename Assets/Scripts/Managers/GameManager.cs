@@ -19,6 +19,10 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] GameObject Gimmick3Prefab;
     [SerializeField] GameObject LadderPrefab;
     [SerializeField] GameObject PlayerPrefab;
+    [SerializeField] GameObject Key1Prefab;
+    [SerializeField] GameObject Key2Prefab;
+    [SerializeField] GameObject Key3Prefab;
+    [SerializeField] GameObject Key4Prefab;
 
 
 
@@ -30,6 +34,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     GameObject Ladder;
     GameObject player;
+    GameObject Key1;
+    GameObject Key2;
+    GameObject Key3;
+    GameObject Key4;
 
 
     protected override void Awake()
@@ -45,6 +53,12 @@ public class GameManager : MonoSingleton<GameManager>
         Gimmick3Prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/GimmickFall1");
         LadderPrefab = Resources.Load<GameObject>("Prefabs/Ladder");
         PlayerPrefab = Resources.Load<GameObject>("Prefabs/GameSettings/Player");
+        Key1Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key1");
+        Key2Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key2");
+        Key3Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key3");
+        Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
+
+
 
 
         player = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity, transform);
@@ -106,7 +120,18 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.Save(); // 저장 강제 적용
         Debug.Log("Map Saved: " + CurrentMap);
     }
+    void SpawnKey()
+    {
+        Key1Prefab = Instantiate(Key1, Vector3.zero, Quaternion.identity, transform);
+        Key1Prefab.SetActive(false);
+        Key2Prefab = Instantiate(Key2, Vector3.zero, Quaternion.identity, transform);
+        Key2Prefab.SetActive(false);
+        Key3Prefab = Instantiate(Key3, Vector3.zero, Quaternion.identity, transform);
+        Key3Prefab.SetActive(false);
+        Key4Prefab = Instantiate(Key4, Vector3.zero, Quaternion.identity, transform);
+        Key4Prefab.SetActive(false);
 
+    }
     private void SpawnAllGrid()
     {
         grid1Instance = Instantiate(Grid1, Vector3.zero, Quaternion.identity, transform);
