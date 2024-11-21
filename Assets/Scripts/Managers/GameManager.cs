@@ -54,6 +54,7 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             case 2:
                 grid2Instance.SetActive(true);
+
                 MonsterManager.Instance.Stage2Monster();
                 break;
             default:
