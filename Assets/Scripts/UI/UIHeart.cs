@@ -6,6 +6,8 @@ public class UIHeart : MonoBehaviour
     public int lifeIncrement = 1;  // 하트 증가량
     private int currentLives = 1;  // 현재 하트 수
 
+    private PlayerController playerController;
+
     public int CurrentLives
     {
         get { return currentLives; }
@@ -20,6 +22,11 @@ public class UIHeart : MonoBehaviour
     {
         // 게임 시작 시 저장된 하트 수를 불러옵니다.
         CurrentLives = PlayerPrefs.GetInt("HeartCount", 1);  // 기본값은 1로 설정
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.uiHeart = this;
+        }
     }
 
     public void Collect()

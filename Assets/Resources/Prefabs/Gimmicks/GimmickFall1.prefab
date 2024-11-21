@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 6995879233235394139}
   - component: {fileID: -5849264971344958077}
   - component: {fileID: 5387594371425372166}
-  - component: {fileID: 5119721176872937956}
   m_Layer: 0
   m_Name: GimmickFall1
   m_TagString: Gimmick
@@ -272,16 +271,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &5119721176872937956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6265469659455420750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9436c1219617429f93c63f4dd43ab15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeIncrement: 1
