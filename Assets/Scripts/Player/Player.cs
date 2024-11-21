@@ -3,14 +3,14 @@ using UnityEngine;
 public class Player : MonoSingleton<Player>
 {
     //[SerializeField] private FireBall fireBallPrefab;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform skillPivot;
     //private ObjectPool<FireBall> fireBallPool;
     private SpriteRenderer spriteRenderer; // SpriteRenderer 참조
     protected override void Awake()
     {
         base.Awake();
         //fireBallPrefab = Resources.Load<FireBall>("Prefabs/Skills/FireBall");
-        firePoint = GetComponent<Transform>();
+        skillPivot = GetComponent<Transform>();
     }
     private void Start()
     {
@@ -30,9 +30,9 @@ public class Player : MonoSingleton<Player>
 
     private void ShootFireBall()
     {
-        Vector3 firePointPosition = firePoint.position;
+        Vector3 firePointPosition = skillPivot.position;
 
-        FireBall fireBall = SkillManager.Instance.fireBallPool.GetObject(firePointPosition, firePoint.rotation);
+        FireBall fireBall = SkillManager.Instance.fireBallPool.GetObject(firePointPosition, skillPivot.rotation);
             // SpriteRenderer의 flipX 상태를 기반으로 발사 방향 설정
         float direction = spriteRenderer.flipX ? -1f : 1f; // flipX가 true면 왼쪽(-1), false면 오른쪽(1)
         Vector2 dir = new Vector2(direction, 0); // x축 방향으로만 발사
