@@ -27,11 +27,10 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Ground1Gimmick;
     GameObject Ground2Gimmick;
     GameObject Fall1Gimmick;
-<<<<<<< HEAD
+
     GameObject Ladder;
     GameObject player;
-=======
->>>>>>> lsw
+
 
     protected override void Awake()
     {
