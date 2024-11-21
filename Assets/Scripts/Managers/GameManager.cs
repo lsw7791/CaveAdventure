@@ -54,7 +54,8 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             case 2:
                 grid2Instance.SetActive(true);
-
+                Ground2Gimmick.SetActive(true);
+                Ground2Gimmick.transform.position = new Vector2(8f, -4.4f);
                 MonsterManager.Instance.Stage2Monster();
                 break;
             default:
@@ -77,6 +78,14 @@ public class GameManager : MonoSingleton<GameManager>
         Ground2Gimmick = Instantiate(Gimmick2Prefab, Vector3.zero, Quaternion.identity, transform);
         Ground2Gimmick.SetActive(false);
         Fall1Gimmick = Instantiate(Gimmick3Prefab, Vector3.zero, Quaternion.identity, transform);
+        Fall1Gimmick.SetActive(false);
+    }
+    void AllSetActiveFalse()
+    {
+        grid1Instance.SetActive(false);
+        grid2Instance.SetActive(false);
+        Ground1Gimmick.SetActive(false);
+        Ground2Gimmick.SetActive(false);
         Fall1Gimmick.SetActive(false);
     }
 }
