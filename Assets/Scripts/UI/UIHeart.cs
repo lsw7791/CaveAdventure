@@ -22,6 +22,7 @@ public class UIHeart : MonoBehaviour
     {
         // 게임 시작 시 저장된 하트 수를 불러옵니다.
         CurrentLives = PlayerPrefs.GetInt("HeartCount", 1);  // 기본값은 1로 설정
+
         playerController= FindObjectOfType<PlayerController>();
         if (playerController != null)
         {
