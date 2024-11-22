@@ -63,17 +63,26 @@ InputSystem Package 활용, 키보드로 조작
 https://docs.google.com/drawings/d/1IWGt1gAPaFoUjvxOJcfKfIugNmSjJ2LMGAa0gnN7aps/edit
 
 
-## 주요 로직 클래스
-### 1. **Manager** (매니저 폴더)
+## 로직 클래스(폴더)
+### 1. **Manager** (매니저)
 - MonoSingleton : 싱글톤과 모노를 합친 스크립트
 - GameManager : 전반적인 게임 오브젝트 관리 및 생성, 생명과 맵 스테이지 관리
 - MonsterManager : 몬스터 생성 및 관리(오브젝트 풀)
 - SkillManager : 스킬 생성 및 관리(오브젝트 풀)
-### 2. **Player** (플레이어 폴더)
+- SoundManager : 사운드 관리 및 재생
+- 
+### 2. **Player** (플레이어)
 - 플레이어 이동, 점프 및 애니메이션을 처리
 - 플레이어와 장애물의 충돌 판정
 
-### 3. Road, Building, ObstacleManager (맵 생성)
+### 3. Item (아이템)
+- 각종 아이템 관련 로직 및 애니메이션 관리
 
-- **오브젝트 풀링**: RoadManager로 Road 인스턴스를 풀링하여 리소스 절약
-- **생성 및 재배치 로직**: Building, Hurdle 인스턴스가 카메라 촬영 범위 밖으로 이동하면 새 위치로 재배치하여 무한 맵 생성
+### 4. UI
+- UI 관련 로직
+
+### 4. SO
+- 게임 내 몬스터, 스킬, 드랍관련 스텟
+
+### 4. Scenes
+- 메인 메뉴
