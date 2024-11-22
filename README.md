@@ -41,7 +41,7 @@ InputSystem Package 활용, 키보드로 조작
 
 ### 개발 기간
 
-2024.10.31 - 2024.11.06 (7일)
+2024.11.18 - 2024.11.22 (7일)
 
 ### 역할 분담
 
@@ -64,15 +64,13 @@ https://docs.google.com/drawings/d/1IWGt1gAPaFoUjvxOJcfKfIugNmSjJ2LMGAa0gnN7aps/
 
 
 ## 주요 로직 클래스
-
-### 1. **GameManager** (게임 상태 관리)
-
-- 주요 게임 상태(시작, 게임 플레이, 게임 오버) 제어
-- 점수, 생명, 파워업, 업적 관리
-
-### 2. **PlayerController** (플레이어 이동 및 상호작용)
-
-- 플레이어 입력, 이동, 점프 및 슬라이드 애니메이션을 처리
+### 1. **Manager** (매니저 폴더)
+- MonoSingleton : 싱글톤과 모노를 합친 스크립트
+- GameManager : 전반적인 게임 오브젝트 관리 및 생성, 생명과 맵 스테이지 관리
+- MonsterManager : 몬스터 생성 및 관리(오브젝트 풀)
+- SkillManager : 스킬 생성 및 관리(오브젝트 풀)
+### 2. **Player** (플레이어 폴더)
+- 플레이어 이동, 점프 및 애니메이션을 처리
 - 플레이어와 장애물의 충돌 판정
 
 ### 3. Road, Building, ObstacleManager (맵 생성)
