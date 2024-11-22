@@ -1,28 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    [SerializeField] Transform playerPos;  // ÇÃ·¹ÀÌ¾îÀÇ TransformÀ» ÀúÀåÇÒ º¯¼ö
+    [SerializeField] Transform playerPos;  // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Transformï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     Vector3 offset;
-    // Ä«¸Þ¶ó¿Í ÇÃ·¹ÀÌ¾î »çÀÌÀÇ °Å¸®
+    // Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
 
     // Start is called before the first frame update
     void Start()
     {
-        // ÇÃ·¹ÀÌ¾î ÅÂ±×°¡ ºÙÀº ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¼­ ÇÃ·¹ÀÌ¾î º¯¼ö¿¡ ÇÒ´ç
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Â±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        offset = new Vector3(0, -0, -10);  // X, Y, Z °ª Á¶Á¤ °¡´É
+        offset = new Vector3(0, -0, -10);  // X, Y, Z ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ Ä«¸Þ¶ó¿¡ ¹Ý¿µ
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Ý¿ï¿½
         if (playerPos != null)
         {
-            // Ä«¸Þ¶óÀÇ À§Ä¡¸¦ ÇÃ·¹ÀÌ¾î À§Ä¡ + ¿ÀÇÁ¼ÂÀ¸·Î ¼³Á¤
+            // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             transform.position = playerPos.position + offset;
         }
     }

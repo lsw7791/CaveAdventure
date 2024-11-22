@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // ½Ì±ÛÅÏ ÀÎ½ºÅÏ½º¸¦ ÀúÀåÇÒ Á¤Àû º¯¼ö
+    // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private static T _instance;
 
-    // ÀÎ½ºÅÏ½º¸¦ °¡Á®¿À´Â ¼Ó¼º
+    // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½
     public static T Instance
     {
         get
         {
-            // ÀÎ½ºÅÏ½º°¡ ¾øÀ¸¸é Ã£°í, ¾ø´Ù¸é »õ·Î »ý¼ºÇÔ
+            // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½, ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (_instance == null)
             {
-                // ¾À¿¡¼­ ½Ì±ÛÅÏ °´Ã¼¸¦ Ã£°Å³ª, ¾øÀ¸¸é »õ·Î »ý¼º
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Ã£ï¿½Å³ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 _instance = FindObjectOfType<T>();
 
                 if (_instance == null)
@@ -24,7 +22,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                     _instance = singletonObject.AddComponent<T>();
                     singletonObject.name = typeof(T).ToString() + " (Singleton)";
 
-                    // ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ Á¾·áµÉ ¶§±îÁö °´Ã¼¸¦ À¯Áö
+                    // ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     DontDestroyOnLoad(singletonObject);
                 }
             }
@@ -32,7 +30,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    // ÀÎ½ºÅÏ½º¸¦ ¸í½ÃÀûÀ¸·Î ¼³Á¤ÇÒ ¼ö ¾øµµ·Ï private set »ç¿ë
+    // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ private set ï¿½ï¿½ï¿½
     private static void SetInstance(T instance)
     {
         if (_instance != null && _instance != instance)
@@ -43,23 +41,23 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         _instance = instance;
     }
 
-    // °ÔÀÓ Á¾·á ½Ã ÀÎ½ºÅÏ½º¸¦ null·Î ÃÊ±âÈ­
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½Ê±ï¿½È­
     private void OnApplicationQuit()
     {
         _instance = null;
     }
 
-    // Awake¿¡¼­ ÀÎ½ºÅÏ½º¸¦ ¼³Á¤
+    // Awakeï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected virtual void Awake()
     {
         if (_instance == null)
         {
             _instance = this as T;
-            DontDestroyOnLoad(gameObject);  // ¾ÀÀÌ º¯°æµÅµµ °´Ã¼¸¦ À¯Áö
+            DontDestroyOnLoad(gameObject);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Åµï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else if (_instance != this)
         {
-            Destroy(gameObject);  // Áßº¹µÈ ÀÎ½ºÅÏ½º¸¦ ÆÄ±«
+            Destroy(gameObject);  // ï¿½ßºï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½
         }
     }
 }

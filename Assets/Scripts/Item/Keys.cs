@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Key : MonoBehaviour
 {
@@ -18,7 +17,9 @@ public class Key : MonoBehaviour
         }
         if (GameManager.Instance.KeyNum >= 4)
         {
-            //TODO : 끝나는 포탈 열기
+            GameManager.Instance.Box2.SetActive(true);
+            GameManager.Instance.Box2.transform.position = new Vector2(34f, 4.5f);
+
         }
     }
 

@@ -26,6 +26,9 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] GameObject Key2Prefab;
     [SerializeField] GameObject Key3Prefab;
     [SerializeField] GameObject Key4Prefab;
+    [SerializeField] GameObject Box1Prefab;
+    [SerializeField] GameObject Box2Prefab;
+
 
     GameObject grid1Instance;
     GameObject grid2Instance;
@@ -40,6 +43,8 @@ public class GameManager : MonoSingleton<GameManager>
     GameObject Key2;
     GameObject Key3;
     GameObject Key4;
+    GameObject Box1;
+    public GameObject Box2;
     public UIHeart uiHeart;
     public UIGameOver uiGameOver;
 
@@ -61,7 +66,9 @@ public class GameManager : MonoSingleton<GameManager>
         Key2Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key2");
         Key3Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key3");
         Key4Prefab = Resources.Load<GameObject>("Prefabs/Keys/Key4");
-        
+        Box1Prefab = Resources.Load<GameObject>("Prefabs/Box/Box1");
+        Box2Prefab = Resources.Load<GameObject>("Prefabs/Box/Box2");
+
 
         // 초기화
         player = Instantiate(PlayerPrefab, new Vector2(10f,10f), Quaternion.identity, transform);
@@ -69,6 +76,7 @@ public class GameManager : MonoSingleton<GameManager>
         SpawnAllGrid();
         SpawnAllGimmick();
         SpawnKey();
+        SpawnAllBoxes();
         SetStage(CurrentMap); // 저장된 맵 상태로 복원
         KeyNum = 0;
 
@@ -99,6 +107,8 @@ public class GameManager : MonoSingleton<GameManager>
                 Ground1Gimmick.transform.position = new Vector2(10f, -4.3f);
                 Fall1Gimmick.SetActive(true);
                 Fall1Gimmick.transform.position = new Vector2(10f, 4f);
+                Box1.SetActive(true);
+                Box1.transform.position = new Vector2(23.5f, -3.5f);
                 MonsterManager.Instance.Stage1Monster();
                 break;
             case 2:
@@ -121,6 +131,7 @@ public class GameManager : MonoSingleton<GameManager>
                 Key3.transform.position = new Vector2(-9f,7f);
                 Key4.SetActive(true);
                 Key4.transform.position = new Vector2(24f, 6f);
+               
                 break;
             case 3:
                 grid3Instance.SetActive(true);
@@ -183,6 +194,14 @@ public class GameManager : MonoSingleton<GameManager>
         Fall1Gimmick.SetActive(false);
         Ladder = Instantiate(LadderPrefab, Vector3.zero, Quaternion.identity, transform);
         Ladder.SetActive(false);
+    }
+
+    private void SpawnAllBoxes()
+    {
+        Box1 = Instantiate(Box1Prefab, Vector3.zero, Quaternion.identity, transform);
+        Box1.SetActive(false);
+        Box2 = Instantiate(Box2Prefab, Vector3.zero, Quaternion.identity, transform);
+        Box2.SetActive(false);
     }
 
     private void AllSetActiveFalse()

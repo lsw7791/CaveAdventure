@@ -3,7 +3,6 @@ using UnityEngine.UI;  // 기존 UI.Text를 사용하기 위한 네임스페이�
 
 public class UIHeart : MonoBehaviour
 {
-    private int currentLives;  // 현재 하트 수
     [SerializeField] public Text heartText;  // 기존 UI.Text를 사용
 
 
@@ -18,6 +17,7 @@ public class UIHeart : MonoBehaviour
                 Debug.LogError("Text 컴포넌트를 자식 오브젝트에서 찾을 수 없습니다. 인스펙터에서 수동으로 할당하세요.");
             }
         }
+        GameManager.Instance.uiHeart = this;
     }
 
     private void Start()

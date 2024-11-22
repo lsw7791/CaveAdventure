@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -14,7 +12,7 @@ public class PlayerManager : MonoBehaviour
                 _instance = new GameObject("PlayerManager").AddComponent<PlayerManager>();
             }
             return _instance;
-            //_instanceÀÇ °ªÀÌ nullÀÏ °æ¿ì °ÔÀÓ ¿ÀºêÁ§Æ®·Î PlayerManager¸¦ ¸¸µé¾î ¹ÝÈ¯ÇÏ´Â ¹æ¾î ÄÚµå
+            //_instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ PlayerManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½
         }
     }
     public Player _player;
